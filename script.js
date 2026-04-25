@@ -12,6 +12,8 @@ function init() {
 
     document.getElementById("fileInput").addEventListener("change", loadFile);
 
+    buildDropdown(); // 🔥 AJOUT
+
     setStatus("Prêt (mode 100% offline)");
 }
 
@@ -399,16 +401,31 @@ octane: `octane
   1 25  1
   8 26  1
 M  END
-`,
-
 `
 };
 
+// 🔥 MENU DÉROULANT
+function buildDropdown() {
+    const select = document.createElement("select");
+    select.id = "molSelect";
+
+    for (const key in molecules) {
+        const option = document.createElement("option");
+        option.value = key;
+        option.textContent = key;
+        select.appendChild(option);
+    }
+
+    document.getElementById("panel").insertBefore(select, document.getElementById("btnGen"));
+}
+
+// 🔥 GENERATION CORRIGÉE
 function generate() {
-    const input = document.getElementById("input").value.toLowerCase().trim();
+    const select = document.getElementById("molSelect");
+    const input = select.value;
 
     if (!input) {
-        setStatus("Entre un nom de molécule");
+        setStatus("Choisis une molécule");
         return;
     }
 
@@ -416,32 +433,30 @@ function generate() {
         display(molecules[input]);
         setStatus("Molécule chargée (offline)");
     } else {
-        setStatus("Molécule inconnue (offline)");
+        setStatus("Molécule inconnue");
     }
 }
 
 function display(data) {
     viewer.clear();
-
     viewer.addModel(data, "sdf");
 
     viewer.setStyle({}, {
-    stick: { radius: 0.2 },
-    sphere: { scale: 0.3 }
-});
+        stick: { radius: 0.2 },
+        sphere: { scale: 0.3 }
+    });
 
-// 🔥 Override carbone en noir
-viewer.setStyle({ elem: "C" }, {
-    stick: { color: "black" },
-    sphere: { color: "black" }
-});
+    viewer.setStyle({ elem: "C" }, {
+        stick: { color: "black" },
+        sphere: { color: "black" }
+    });
 
     viewer.zoomTo();
     viewer.render();
 }
 
 function loadExample() {
-    document.getElementById("input").value = "ethanol";
+    document.getElementById("molSelect").value = "ethanol";
     generate();
 }
 
