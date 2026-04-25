@@ -12,7 +12,17 @@ function init() {
 
     document.getElementById("fileInput").addEventListener("change", loadFile);
 
-    buildDropdown(); // 🔥 AJOUT
+    function buildDropdown() {
+    const select = document.getElementById("molSelect");
+    select.innerHTML = "";
+
+    for (const key in molecules) {
+        const option = document.createElement("option");
+        option.value = key;
+        option.textContent = key;
+        select.appendChild(option);
+    }
+}
 
     setStatus("Prêt (mode 100% offline)");
 }
