@@ -11,34 +11,85 @@ function init() {
     document.getElementById("btnExample").addEventListener("click", loadExample);
 
     document.getElementById("fileInput").addEventListener("change", loadFile);
+
+    setStatus("Prêt (mode 100% offline)");
 }
 
-async function generate() {
-    const input = document.getElementById("input").value;
-    setStatus("Chargement...");
+// 🔥 Base molécules locale
+const molecules = {
+    ethanol: `ethanol
+  local
 
-    try {
-        // 🔥 méthode robuste : nom OU SMILES
-        const url = `https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/${input}/SDF?record_type=3d`;
+  9  8  0  0  0  0            999 V2000
+    0.0000    0.0000    0.0000 C
+    1.5400    0.0000    0.0000 C
+    2.0900    1.2000    0.0000 O
+    0.0000    1.0000    0.0000 H
+    0.0000   -0.5000    0.9000 H
+    0.0000   -0.5000   -0.9000 H
+    1.5400   -0.5000    0.9000 H
+    1.5400   -0.5000   -0.9000 H
+    2.0900    1.7000    0.9000 H
+  1  2  1
+  2  3  1
+  1  4  1
+  1  5  1
+  1  6  1
+  2  7  1
+  2  8  1
+  3  9  1
+M  END
+`,
 
-        let res = await fetch(url);
+    benzene: `benzene
+  local
 
-        if (!res.ok) {
-            // fallback SMILES
-            const url2 = `https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/${input}/SDF?record_type=3d`;
-            res = await fetch(url2);
-        }
+  6  6  0  0  0  0            999 V2000
+    1.3960    0.0000    0.0000 C
+    0.6980    1.2090    0.0000 C
+   -0.6980    1.2090    0.0000 C
+   -1.3960    0.0000    0.0000 C
+   -0.6980   -1.2090    0.0000 C
+    0.6980   -1.2090    0.0000 C
+  1  2  2
+  2  3  1
+  3  4  2
+  4  5  1
+  5  6  2
+  6  1  1
+M  END
+`,
 
-        if (!res.ok) throw new Error("Molécule non trouvée");
+    methane: `methane
+  local
 
-        const sdf = await res.text();
+  5  4  0  0  0  0            999 V2000
+    0.0000    0.0000    0.0000 C
+    0.0000    0.0000    1.0890 H
+    1.0267    0.0000   -0.3630 H
+   -0.5133   -0.8892   -0.3630 H
+   -0.5133    0.8892   -0.3630 H
+  1  2  1
+  1  3  1
+  1  4  1
+  1  5  1
+M  END
+`
+};
 
-        display(sdf);
-        setStatus("Molécule chargée");
+function generate() {
+    const input = document.getElementById("input").value.toLowerCase().trim();
 
-    } catch (e) {
-        console.error(e);
-        setStatus("Erreur : molécule introuvable");
+    if (!input) {
+        setStatus("Entre un nom de molécule");
+        return;
+    }
+
+    if (molecules[input]) {
+        display(molecules[input]);
+        setStatus("Molécule chargée (offline)");
+    } else {
+        setStatus("Molécule inconnue (offline)");
     }
 }
 
