@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: #111;
+    color: white;
+}
+
+#ui {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+    background: rgba(0,0,0,0.6);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+input {
+    padding: 8px;
+    margin-top: 10px;
+    width: 200px;
+}
+
+button {
+    padding: 8px;
+    margin-top: 10px;
+    cursor: pointer;
+}
