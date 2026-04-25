@@ -2,24 +2,28 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Visualiseur Moléculaire 3D</title>
+    <title>Molécule 3D Studio</title>
+
+    <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div id="ui">
-    <h1>Molécule 3D</h1>
-    <input type="text" id="formula" placeholder="Ex: H2O, CO2, CH4">
-    <button onclick="generateMolecule()">Générer</button>
+<div id="panel">
+    <h2>Molécule 3D Studio</h2>
+
+    <input id="smiles" placeholder="SMILES (ex: CCO)">
+    
+    <button onclick="generate()">Générer</button>
+    <button onclick="optimize()">Optimiser 3D</button>
+    <button onclick="loadExample()">Exemple</button>
+
+    <input type="file" id="fileInput" />
 </div>
 
-<div id="canvas-container"></div>
+<div id="viewer"></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/controls/OrbitControls.js"></script>
-
-<script src="moleculeBuilder.js"></script>
-<script src="script.js"></script>
+<script type="module" src="script.js"></script>
 
 </body>
 </html>
