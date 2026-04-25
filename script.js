@@ -7,9 +7,10 @@ function init() {
         backgroundColor: "#f0f0f0"
     });
 
+     viewer.resize(); // 🔥 important
+
     document.getElementById("btnGen").addEventListener("click", generate);
     document.getElementById("btnExample").addEventListener("click", loadExample);
-
     document.getElementById("fileInput").addEventListener("change", loadFile);
 
     function buildDropdown() {
