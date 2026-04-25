@@ -1,55 +1,64 @@
-let scene, camera, renderer, controls;
-let moleculeGroup;
+import { getRDKit } from './rdkitLoader.js';
+import { smilesTo3D } from './obabelLoader.js';
 
-init();
-
-function init() {
-    scene = new THREE.Scene();
-
-    camera = new THREE.PerspectiveCamera(
-        75,
-        window.innerWidth / window.innerHeight,
-        0.1,
-        1000
-    );
-    camera.position.z = 5;
-
-    renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-
-    document.getElementById("canvas-container").appendChild(renderer.domElement);
-
-    controls = new THREE.OrbitControls(camera, renderer.domElement);
-
-    const light = new THREE.PointLight(0xffffff, 1);
-    light.position.set(10, 10, 10);
-    scene.add(light);
-
-    const ambient = new THREE.AmbientLight(0x404040);
-    scene.add(ambient);
-
-    animate();
-}
-
-function animate() {
-    requestAnimationFrame(animate);
-    controls.update();
-    renderer.render(scene, camera);
-}
-
-function generateMolecule() {
-    const formula = document.getElementById("formula").value;
-
-    if (moleculeGroup) {
-        scene.remove(moleculeGroup);
-    }
-
-    moleculeGroup = buildMolecule(formula);
-    scene.add(moleculeGroup);
-}
-
-window.addEventListener("resize", () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+let viewer = $3Dmol.createViewer("viewer", {
+    backgroundColor: "black"
 });
+
+let currentMol = null;
+
+async function generate() {
+    const smiles = document.getElementById("smiles").value;
+    const RDKit = await getRDKit();
+
+    try {
+        currentMol = RDKit.get_mol(smiles);
+        const molblock = currentMol.get_molblock();
+
+        display(molblock);
+
+    } catch (e) {
+        alert("Erreur SMILES");
+    }
+}
+
+async function optimize() {
+    const smiles = document.getElementById("smiles").value;
+
+    const sdf = await smilesTo3D(smiles);
+    display(sdf);
+}
+
+function display(data) {
+    viewer.clear();
+
+    viewer.addModel(data, "sdf");
+
+    viewer.setStyle({}, {
+        stick: { radius: 0.2 },
+        sphere: { scale: 0.25 }
+    });
+
+    viewer.zoomTo();
+    viewer.render();
+}
+
+function loadExample() {
+    document.getElementById("smiles").value = "CCO";
+    generate();
+}
+
+// Import fichier
+document.getElementById("fileInput").addEventListener("change", e => {
+    const file = e.target.files[0];
+
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+        display(ev.target.result);
+    };
+    reader.readAsText(file);
+});
+
+window.generate = generate;
+window.optimize = optimize;
+window.loadExample = loadExample;
