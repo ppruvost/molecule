@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <title>Molécule 3D Studio</title>
 
+    <!-- IMPORTANT : 3Dmol global -->
     <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,11 +14,12 @@
 <div id="panel">
     <h2>Molécule 3D Studio</h2>
 
-    <input id="smiles" placeholder="SMILES (ex: CCO)">
+    <input id="input" placeholder="Nom ou SMILES (ex: ethanol ou CCO)">
     
-    <button onclick="generate()">Générer</button>
-    <button onclick="optimize()">Optimiser 3D</button>
-    <button onclick="loadExample()">Exemple</button>
+    <button id="btnGen">Générer</button>
+    <button id="btnExample">Exemple</button>
+
+    <p id="status"></p>
 
     <input type="file" id="fileInput" />
 </div>
