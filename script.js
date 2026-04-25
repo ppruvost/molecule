@@ -1,32 +1,45 @@
-import { getRDKit } from './rdkitLoader.js';
-import { smilesTo3D } from './obabelLoader.js';
+let viewer;
 
-let viewer = $3Dmol.createViewer("viewer", {
-    backgroundColor: "black"
-});
+init();
 
-let currentMol = null;
+function init() {
+    viewer = $3Dmol.createViewer("viewer", {
+        backgroundColor: "black"
+    });
 
-async function generate() {
-    const smiles = document.getElementById("smiles").value;
-    const RDKit = await getRDKit();
+    document.getElementById("btnGen").addEventListener("click", generate);
+    document.getElementById("btnExample").addEventListener("click", loadExample);
 
-    try {
-        currentMol = RDKit.get_mol(smiles);
-        const molblock = currentMol.get_molblock();
-
-        display(molblock);
-
-    } catch (e) {
-        alert("Erreur SMILES");
-    }
+    document.getElementById("fileInput").addEventListener("change", loadFile);
 }
 
-async function optimize() {
-    const smiles = document.getElementById("smiles").value;
+async function generate() {
+    const input = document.getElementById("input").value;
+    setStatus("Chargement...");
 
-    const sdf = await smilesTo3D(smiles);
-    display(sdf);
+    try {
+        // 🔥 méthode robuste : nom OU SMILES
+        const url = `https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/${input}/SDF?record_type=3d`;
+
+        let res = await fetch(url);
+
+        if (!res.ok) {
+            // fallback SMILES
+            const url2 = `https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/${input}/SDF?record_type=3d`;
+            res = await fetch(url2);
+        }
+
+        if (!res.ok) throw new Error("Molécule non trouvée");
+
+        const sdf = await res.text();
+
+        display(sdf);
+        setStatus("Molécule chargée");
+
+    } catch (e) {
+        console.error(e);
+        setStatus("Erreur : molécule introuvable");
+    }
 }
 
 function display(data) {
@@ -36,7 +49,7 @@ function display(data) {
 
     viewer.setStyle({}, {
         stick: { radius: 0.2 },
-        sphere: { scale: 0.25 }
+        sphere: { scale: 0.3 }
     });
 
     viewer.zoomTo();
@@ -44,21 +57,22 @@ function display(data) {
 }
 
 function loadExample() {
-    document.getElementById("smiles").value = "CCO";
+    document.getElementById("input").value = "ethanol";
     generate();
 }
 
-// Import fichier
-document.getElementById("fileInput").addEventListener("change", e => {
+function loadFile(e) {
     const file = e.target.files[0];
 
     const reader = new FileReader();
     reader.onload = function(ev) {
         display(ev.target.result);
+        setStatus("Fichier chargé");
     };
-    reader.readAsText(file);
-});
 
-window.generate = generate;
-window.optimize = optimize;
-window.loadExample = loadExample;
+    reader.readAsText(file);
+}
+
+function setStatus(msg) {
+    document.getElementById("status").innerText = msg;
+}
