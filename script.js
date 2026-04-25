@@ -28,6 +28,26 @@ const molecules = {
   1  3  1
 M  END
 `,
+    hcl: `hcl
+  local
+
+  2  1  0  0  0  0            999 V2000
+    0.0000    0.0000    0.0000 H
+    1.2700    0.0000    0.0000 Cl
+  1  2  1
+M  END
+`,
+    naoh: `naoh
+  local
+
+  3  2  0  0  0  0            999 V2000
+   -1.2000    0.0000    0.0000 Na
+    0.0000    0.0000    0.0000 O
+    1.0000    0.0000    0.0000 H
+  1  2  1
+  2  3  1
+M  END
+`,
     carbon_monoxide: `carbon_monoxide
   local
 
