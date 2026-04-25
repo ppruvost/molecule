@@ -1,0 +1,19 @@
+{
+  "name": "molecule-3d-viewer",
+  "version": "1.0.0",
+  "description": "Visualiseur 3D de molécules à partir d'une formule chimique avec Three.js",
+  "author": "TonNom",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "three": "^0.158.0"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}
