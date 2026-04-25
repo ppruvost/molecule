@@ -4,7 +4,7 @@ init();
 
 function init() {
     viewer = $3Dmol.createViewer("viewer", {
-        backgroundColor: "black"
+        backgroundColor: "#f0f0f0"
     });
 
     document.getElementById("btnGen").addEventListener("click", generate);
@@ -99,9 +99,15 @@ function display(data) {
     viewer.addModel(data, "sdf");
 
     viewer.setStyle({}, {
-        stick: { radius: 0.2 },
-        sphere: { scale: 0.3 }
-    });
+    stick: { radius: 0.2 },
+    sphere: { scale: 0.3 }
+});
+
+// 🔥 Override carbone en noir
+viewer.setStyle({ elem: "C" }, {
+    stick: { color: "black" },
+    sphere: { color: "black" }
+});
 
     viewer.zoomTo();
     viewer.render();
