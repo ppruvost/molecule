@@ -1,8 +1,13 @@
 export async function smilesTo3D(smiles) {
-    // API publique OpenBabel-like (fallback web)
-    const res = await fetch(
-        `https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/${smiles}/SDF`
-    );
+    try {
+        const res = await fetch(
+            `https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/${encodeURIComponent(smiles)}/SDF`
+        );
 
-    return await res.text();
+        if (!res.ok) throw new Error("Molécule introuvable");
+
+        return await res.text();
+    } catch (err) {
+        throw new Error("Erreur SMILES → 3D");
+    }
 }
