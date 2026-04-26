@@ -1,5 +1,3 @@
-import initRDKitModule from "@rdkit/rdkit";
-
 let RDKit;
 
 export async function getRDKit() {
