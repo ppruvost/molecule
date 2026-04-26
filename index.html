@@ -2,9 +2,9 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Molécule 3D Studio</title>
+    <title>Molécules 3D Studio</title>
 
-    <!-- IMPORTANT : 3Dmol global -->
+    <!-- 3Dmol -->
     <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
 
     <link rel="stylesheet" href="style.css">
@@ -12,16 +12,25 @@
 <body>
 
 <div id="panel">
-    <h2>Molécule 3D Studio</h2>
+    <h2>Molécules 3D Studio</h2>
 
+    <!-- 📦 LIBRAIRIE -->
     <select id="molSelect"></select>
 
     <button id="btnGen">Générer</button>
     <button id="btnExample">Exemple</button>
 
-    <p id="status"></p>
+    <hr>
+
+    <!-- 🔬 SMILES -->
+    <input type="text" id="smilesInput" placeholder="Ex: CCO (éthanol)">
+    <button id="btnSmiles">Générer depuis SMILES</button>
+
+    <hr>
 
     <input type="file" id="fileInput" />
+
+    <p id="status"></p>
 </div>
 
 <div id="viewer"></div>
