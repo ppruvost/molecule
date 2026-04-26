@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Molécules 3D Studio</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- 3Dmol -->
     <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
 
     <link rel="stylesheet" href="style.css">
@@ -15,21 +15,30 @@
 <div id="panel">
     <h2>Molécules 3D Studio</h2>
 
-    <!-- 📦 LIBRAIRIE -->
+    <!-- 📦 BIBLIOTHEQUE -->
     <select id="molSelect"></select>
-
     <button id="btnGen">Générer</button>
     <button id="btnExample">Exemple</button>
 
     <hr>
 
     <!-- 🔬 SMILES -->
-    <input type="text" id="smilesInput" placeholder="Ex: CCO (éthanol)">
-    <button id="btnSmiles">Générer depuis SMILES</button>
+    <input type="text" id="smilesInput" placeholder="Ex: CCO">
+    <button id="btnSmiles">Générer SMILES</button>
 
     <hr>
 
-    <input type="file" id="fileInput" />
+    <!-- 🎓 MODE COURS -->
+    <h3>Mode cours</h3>
+    <select id="familySelect"></select>
+    <select id="exampleSelect"></select>
+    <button id="btnCourse">Afficher</button>
+
+    <p id="courseInfo"></p>
+
+    <hr>
+
+    <input type="file" id="fileInput">
 
     <p id="status"></p>
 </div>
