@@ -4,16 +4,18 @@ const viewer = $3Dmol.createViewer("viewer", {
 
 let molecules = [];
 
+// Chargement des molécules
 fetch("molecules.json")
   .then(res => res.json())
   .then(data => {
     molecules = data;
+
     const select = document.getElementById("moleculeSelect");
 
     data.forEach(mol => {
       const option = document.createElement("option");
-      option.value = mol.name;
-      option.textContent = mol.name;
+      option.value = mol.name_en;        // utilisé pour API
+      option.textContent = mol.name_fr;  // affichage utilisateur
       select.appendChild(option);
     });
 
@@ -21,48 +23,122 @@ fetch("molecules.json")
       loadMolecule(select.value);
     });
 
-    loadMolecule(data[0].name);
+    // Charger première molécule correctement
+    loadMolecule(data[0].name_en);
+  })
+  .catch(err => {
+    console.error("Erreur chargement JSON :", err);
   });
 
-async function loadMolecule(name) {
-  const mol = molecules.find(m => m.name === name);
-  const url = `https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/${mol.name}/SDF?record_type=3d`;
 
-  const res = await fetch(url);
-  const sdf = await res.text();
+// =======================
+// 🔬 Chargement molécule
+// =======================
+async function loadMolecule(name_en) {
+  try {
+    const mol = molecules.find(m => m.name_en === name_en);
 
-  viewer.clear();
-  viewer.addModel(sdf, "sdf");
-  viewer.setStyle({}, {stick:{}, sphere:{scale:0.3}});
-  viewer.zoomTo();
-  viewer.render();
+    const url3D = `https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/${encodeURIComponent(name_en)}/SDF?record_type=3d`;
 
-  loadInfo(mol.name);
+    let res = await fetch(url3D);
+
+    // 🔁 fallback si 3D non dispo
+    if (!res.ok) {
+      const fallbackUrl = `https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/${encodeURIComponent(name_en)}/SDF`;
+      res = await fetch(fallbackUrl);
+    }
+
+    if (!res.ok) throw new Error("Molécule introuvable");
+
+    const sdf = await res.text();
+
+    viewer.clear();
+    viewer.addModel(sdf, "sdf");
+    viewer.setStyle({}, { stick: {}, sphere: { scale: 0.3 } });
+    viewer.zoomTo();
+    viewer.render();
+
+    // 🔤 affichage nom FR + EN
+    if (mol) {
+      document.getElementById("molName").textContent =
+        `${mol.name_fr} (${mol.name_en})`;
+    }
+
+    loadInfo(name_en);
+
+  } catch (e) {
+    console.error(e);
+    alert("Erreur lors du chargement de la molécule");
+  }
 }
 
-async function loadInfo(name) {
-  const url = `https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/${name}/property/MolecularFormula,MolecularWeight/JSON`;
 
-  const res = await fetch(url);
-  const data = await res.json();
+// =======================
+// 📊 Infos molécule
+// =======================
+async function loadInfo(name_en) {
+  try {
+    const url = `https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/${encodeURIComponent(name_en)}/property/MolecularFormula,MolecularWeight/JSON`;
 
-  const props = data.PropertyTable.Properties[0];
+    const res = await fetch(url);
+    if (!res.ok) throw new Error("Infos introuvables");
 
-  document.getElementById("formula").textContent = props.MolecularFormula;
-  document.getElementById("mass").textContent = props.MolecularWeight;
+    const data = await res.json();
+    const props = data.PropertyTable.Properties[0];
+
+    document.getElementById("formula").textContent =
+      props.MolecularFormula || "-";
+
+    document.getElementById("mass").textContent =
+      props.MolecularWeight || "-";
+
+  } catch (e) {
+    console.error(e);
+    document.getElementById("formula").textContent = "-";
+    document.getElementById("mass").textContent = "-";
+  }
 }
 
+
+// =======================
+// 🧪 SMILES
+// =======================
 async function loadFromSmiles() {
-  const smiles = document.getElementById("smilesInput").value;
+  const smiles = document.getElementById("smilesInput").value.trim();
 
-  const url = `https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/${encodeURIComponent(smiles)}/SDF?record_type=3d`;
+  if (!smiles) {
+    alert("Veuillez entrer un SMILES");
+    return;
+  }
 
-  const res = await fetch(url);
-  const sdf = await res.text();
+  try {
+    const url = `https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/${encodeURIComponent(smiles)}/SDF?record_type=3d`;
 
-  viewer.clear();
-  viewer.addModel(sdf, "sdf");
-  viewer.setStyle({}, {stick:{}, sphere:{scale:0.3}});
-  viewer.zoomTo();
-  viewer.render();
+    let res = await fetch(url);
+
+    // fallback sans 3D
+    if (!res.ok) {
+      const fallbackUrl = `https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/${encodeURIComponent(smiles)}/SDF`;
+      res = await fetch(fallbackUrl);
+    }
+
+    if (!res.ok) throw new Error("SMILES invalide");
+
+    const sdf = await res.text();
+
+    viewer.clear();
+    viewer.addModel(sdf, "sdf");
+    viewer.setStyle({}, { stick: {}, sphere: { scale: 0.3 } });
+    viewer.zoomTo();
+    viewer.render();
+
+    // reset infos
+    document.getElementById("molName").textContent = "SMILES personnalisé";
+    document.getElementById("formula").textContent = "-";
+    document.getElementById("mass").textContent = "-";
+
+  } catch (e) {
+    console.error(e);
+    alert("SMILES invalide ou molécule non trouvée");
+  }
 }
