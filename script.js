@@ -4,22 +4,24 @@ import { smilesTo3D_RDKit } from "./rdkitLoader.js";
 
 let viewer;
 
-window.addEventListener("DOMContentLoaded", init);
+// 🚨 ATTEND DOM + SAFE INIT
+window.addEventListener("DOMContentLoaded", () => {
+    try {
+        init();
+    } catch (e) {
+        console.error("INIT ERROR:", e);
+    }
+});
 
 function init() {
 
     if (!window.$3Dmol) {
-        console.error("3Dmol pas chargé");
+        console.error("❌ 3Dmol non chargé");
         return;
     }
 
     viewer = $3Dmol.createViewer("viewer", {
         backgroundColor: "#1e3a8a"
-    });
-
-    window.addEventListener("resize", () => viewer.resize());
-    window.addEventListener("orientationchange", () => {
-        setTimeout(() => viewer.resize(), 300);
     });
 
     bindUI();
@@ -31,20 +33,27 @@ function init() {
 
 /* 🔗 EVENTS */
 function bindUI() {
-    document.getElementById("btnGen").addEventListener("click", generate);
-    document.getElementById("btnExample").addEventListener("click", loadExample);
-    document.getElementById("fileInput").addEventListener("change", loadFile);
-    document.getElementById("btnSmiles").addEventListener("click", generateFromSmiles);
-    document.getElementById("btnCourse").addEventListener("click", generateFromCourse);
-
-    document.getElementById("familySelect")
-        .addEventListener("change", updateExamples);
+    document.getElementById("btnGen")?.addEventListener("click", generate);
+    document.getElementById("btnExample")?.addEventListener("click", loadExample);
+    document.getElementById("fileInput")?.addEventListener("change", loadFile);
+    document.getElementById("btnSmiles")?.addEventListener("click", generateFromSmiles);
+    document.getElementById("btnCourse")?.addEventListener("click", generateFromCourse);
+    document.getElementById("familySelect")?.addEventListener("change", updateExamples);
 }
 
 /* 📦 MOLÉCULES */
 function buildDropdown() {
     const select = document.getElementById("molSelect");
-    if (!select || !molecules) return;
+
+    if (!select) {
+        console.error("molSelect introuvable");
+        return;
+    }
+
+    if (!molecules) {
+        console.error("molecules undefined");
+        return;
+    }
 
     select.innerHTML = "";
 
@@ -54,12 +63,23 @@ function buildDropdown() {
         opt.textContent = key;
         select.appendChild(opt);
     });
+
+    console.log("✔ molecules OK");
 }
 
 /* 🎓 FAMILLES */
 function buildFamilyMenu() {
     const select = document.getElementById("familySelect");
-    if (!select || !families) return;
+
+    if (!select) {
+        console.error("familySelect introuvable");
+        return;
+    }
+
+    if (!families) {
+        console.error("families undefined");
+        return;
+    }
 
     select.innerHTML = "";
 
@@ -69,6 +89,8 @@ function buildFamilyMenu() {
         opt.textContent = families[key].nom || key;
         select.appendChild(opt);
     });
+
+    console.log("✔ families OK");
 
     updateExamples();
 }
@@ -93,12 +115,6 @@ function updateExamples() {
 /* 🧪 LOCAL */
 function generate() {
     const key = document.getElementById("molSelect").value;
-
-    if (!molecules[key]) {
-        setStatus("Molécule introuvable");
-        return;
-    }
-
     display(molecules[key]);
 }
 
