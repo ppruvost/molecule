@@ -9,12 +9,12 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background: #1e3a8a;
 }
 
-/* 🧩 Panel */
+/* 🧩 PANEL DESKTOP (par défaut) */
 #panel {
     position: absolute;
     top: 20px;
@@ -26,33 +26,32 @@ body {
     border-radius: 12px;
     color: white;
 
-    width: 320px;            /* 🔥 plus large */
-    font-size: 16px;         /* 🔥 texte plus lisible */
+    width: 320px;
+    font-size: 16px;
 }
 
-/* 🔥 TITRE */
+/* TITRE */
 #panel h2 {
     font-size: 22px;
-    margin-bottom: 10px;
     text-align: center;
 }
 
-/* 🔥 INPUT / SELECT */
+/* INPUT / SELECT */
 #panel select,
 #panel input {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     margin-top: 8px;
-    font-size: 15px;
+    font-size: 16px;
     border-radius: 6px;
     border: none;
 }
 
-/* 🔥 BOUTONS */
+/* BOUTONS */
 #panel button {
     margin-top: 10px;
-    padding: 10px;
-    font-size: 15px;
+    padding: 12px;
+    font-size: 16px;
     border-radius: 8px;
     border: none;
     cursor: pointer;
@@ -61,16 +60,56 @@ body {
     color: white;
 }
 
-#panel button:hover {
-    background: #1d4ed8;
-}
-
-/* 🔥 STATUS */
+/* STATUS */
 #status {
     margin-top: 10px;
     font-size: 14px;
     color: #93c5fd;
 }
-    width: 100%;
-    margin-top: 5px;
+
+/* ===================================== */
+/* 📱 MODE MOBILE */
+/* ===================================== */
+
+@media (max-width: 768px) {
+
+    body {
+        overflow: auto;
+    }
+
+    /* panel devient une barre en bas */
+    #panel {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        top: auto;
+
+        width: 100%;
+        max-height: 50vh;
+        overflow-y: auto;
+
+        border-radius: 20px 20px 0 0;
+        padding: 15px;
+    }
+
+    #panel h2 {
+        font-size: 20px;
+    }
+
+    /* boutons plus gros (doigts) */
+    #panel button {
+        font-size: 18px;
+        padding: 14px;
+    }
+
+    #panel input,
+    #panel select {
+        font-size: 18px;
+        padding: 12px;
+    }
+
+    /* viewer prend tout le reste */
+    #viewer {
+        height: 100vh;
+    }
 }
