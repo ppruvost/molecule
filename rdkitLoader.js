@@ -1,11 +1,10 @@
 let RDKit = null;
 
-/* 🧠 Chargement unique du module RDKit */
 export async function getRDKit() {
     if (RDKit) return RDKit;
 
     if (!window.initRDKitModule) {
-        throw new Error("RDKit CDN non chargé (window.initRDKitModule introuvable)");
+        throw new Error("RDKit non chargé");
     }
 
     RDKit = await window.initRDKitModule();
@@ -14,7 +13,7 @@ export async function getRDKit() {
     return RDKit;
 }
 
-/* 🔬 SMILES → 3D (SDF) */
+/* 🔬 SMILES → 3D SDF */
 export async function smilesTo3D_RDKit(smiles) {
     const RDKit = await getRDKit();
 
@@ -25,12 +24,10 @@ export async function smilesTo3D_RDKit(smiles) {
     }
 
     try {
-        mol.AddHs();
-        mol.EmbedMolecule();
-        mol.UFFOptimizeMolecule();
+        // ✅ RDKit JS : génération 3D correcte
+        const molBlock = mol.get_molblock(true);
 
-        const sdf = mol.get_molblock();
-        return sdf;
+        return molBlock;
 
     } finally {
         mol.delete?.();
