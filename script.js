@@ -1,12 +1,11 @@
 import { molecules } from "./library.js";
+import { families } from "./courseData.js";
 import { smilesTo3D } from "./obabelLoader.js";
 
 let viewer;
 
 init();
-window.addEventListener("orientationchange", () => {
-    setTimeout(() => viewer.resize(), 300);
-});
+
 function init() {
 
     viewer = $3Dmol.createViewer("viewer", {
@@ -14,22 +13,26 @@ function init() {
     });
 
     window.addEventListener("resize", () => viewer.resize());
+    window.addEventListener("orientationchange", () => {
+        setTimeout(() => viewer.resize(), 300);
+    });
 
     document.getElementById("btnGen").addEventListener("click", generate);
     document.getElementById("btnExample").addEventListener("click", loadExample);
     document.getElementById("fileInput").addEventListener("change", loadFile);
     document.getElementById("btnSmiles").addEventListener("click", generateFromSmiles);
+    document.getElementById("btnCourse").addEventListener("click", generateFromCourse);
 
-    document.getElementById("smilesInput")
-        .addEventListener("keypress", (e) => {
-            if (e.key === "Enter") generateFromSmiles();
-        });
+    document.getElementById("familySelect")
+        .addEventListener("change", updateExamples);
 
     buildDropdown();
+    buildFamilyMenu();
+
     setStatus("Prêt");
 }
 
-// 📦 MENU
+/* 📦 MENU */
 function buildDropdown() {
     const select = document.getElementById("molSelect");
 
@@ -41,40 +44,71 @@ function buildDropdown() {
     }
 }
 
-// 🧪 GENERATE LOCAL
-function generate() {
-    const key = document.getElementById("molSelect").value;
+/* 🎓 FAMILLES */
+function buildFamilyMenu() {
+    const select = document.getElementById("familySelect");
 
-    if (!key) {
-        setStatus("Choisis une molécule");
-        return;
+    for (const key in families) {
+        const option = document.createElement("option");
+        option.value = key;
+        option.textContent = families[key].nom;
+        select.appendChild(option);
     }
 
-    display(molecules[key]);
-    setStatus("Molécule chargée");
+    updateExamples();
 }
 
-// 🔬 SMILES → 3D
+function updateExamples() {
+    const familyKey = document.getElementById("familySelect").value;
+    const exampleSelect = document.getElementById("exampleSelect");
+
+    exampleSelect.innerHTML = "";
+
+    families[familyKey].exemples.forEach(ex => {
+        const option = document.createElement("option");
+        option.value = ex.smiles;
+        option.textContent = ex.nom;
+        exampleSelect.appendChild(option);
+    });
+}
+
+/* 🧪 LOCAL */
+function generate() {
+    const key = document.getElementById("molSelect").value;
+    display(molecules[key]);
+}
+
+/* 🔬 SMILES */
 async function generateFromSmiles() {
-    const smiles = document.getElementById("smilesInput").value.trim();
-
-    if (!smiles) {
-        setStatus("Entre un SMILES");
-        return;
-    }
-
-    setStatus("Chargement...");
+    const smiles = document.getElementById("smilesInput").value;
 
     try {
         const sdf = await smilesTo3D(smiles);
         display(sdf);
-        setStatus("Molécule générée");
     } catch {
         setStatus("Erreur SMILES");
     }
 }
 
-// 🎯 DISPLAY
+/* 🎓 MODE COURS */
+async function generateFromCourse() {
+    const familyKey = document.getElementById("familySelect").value;
+    const smiles = document.getElementById("exampleSelect").value;
+
+    const family = families[familyKey];
+
+    document.getElementById("courseInfo").innerText =
+        family.nom + " : " + family.description;
+
+    try {
+        const sdf = await smilesTo3D(smiles);
+        display(sdf);
+    } catch {
+        setStatus("Erreur cours");
+    }
+}
+
+/* 🎯 DISPLAY */
 function display(data) {
     viewer.clear();
     viewer.addModel(data, "sdf");
@@ -88,27 +122,18 @@ function display(data) {
     viewer.render();
 }
 
-// 🎯 EXEMPLE
+/* 📂 FILE */
+function loadFile(e) {
+    const reader = new FileReader();
+    reader.onload = (ev) => display(ev.target.result);
+    reader.readAsText(e.target.files[0]);
+}
+
 function loadExample() {
     document.getElementById("molSelect").value = "ethanol";
     generate();
 }
 
-// 📂 FILE
-function loadFile(e) {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = (ev) => {
-        display(ev.target.result);
-        setStatus("Fichier chargé");
-    };
-
-    reader.readAsText(file);
-}
-
-// 📢 STATUS
 function setStatus(msg) {
     document.getElementById("status").innerText = msg;
 }
