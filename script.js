@@ -7,7 +7,6 @@ let viewer;
 init();
 
 function init() {
-
     viewer = $3Dmol.createViewer("viewer", {
         backgroundColor: "#1e3a8a"
     });
@@ -17,14 +16,13 @@ function init() {
         setTimeout(() => viewer.resize(), 300);
     });
 
-    document.getElementById("btnGen").addEventListener("click", generate);
-    document.getElementById("btnExample").addEventListener("click", loadExample);
-    document.getElementById("fileInput").addEventListener("change", loadFile);
-    document.getElementById("btnSmiles").addEventListener("click", generateFromSmiles);
-    document.getElementById("btnCourse").addEventListener("click", generateFromCourse);
+    document.getElementById("btnGen")?.addEventListener("click", generate);
+    document.getElementById("btnExample")?.addEventListener("click", loadExample);
+    document.getElementById("fileInput")?.addEventListener("change", loadFile);
+    document.getElementById("btnSmiles")?.addEventListener("click", generateFromSmiles);
+    document.getElementById("btnCourse")?.addEventListener("click", generateFromCourse);
 
-    document.getElementById("familySelect")
-        .addEventListener("change", updateExamples);
+    document.getElementById("familySelect")?.addEventListener("change", updateExamples);
 
     buildDropdown();
     buildFamilyMenu();
