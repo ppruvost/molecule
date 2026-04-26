@@ -4,7 +4,9 @@ import { smilesTo3D } from "./obabelLoader.js";
 let viewer;
 
 init();
-
+window.addEventListener("orientationchange", () => {
+    setTimeout(() => viewer.resize(), 300);
+});
 function init() {
 
     viewer = $3Dmol.createViewer("viewer", {
