@@ -1,424 +1,35 @@
+import { molecules } from "./library.js";
+import { smilesTo3D } from "./obabelLoader.js";
+
 let viewer;
 
 init();
 
 function init() {
+
     viewer = $3Dmol.createViewer("viewer", {
-        backgroundColor: "#f0f0f0"
+        backgroundColor: "#1e3a8a"
     });
 
-     viewer.resize(); // 🔥 important
+    window.addEventListener("resize", () => viewer.resize());
 
     document.getElementById("btnGen").addEventListener("click", generate);
     document.getElementById("btnExample").addEventListener("click", loadExample);
     document.getElementById("fileInput").addEventListener("change", loadFile);
+    document.getElementById("btnSmiles").addEventListener("click", generateFromSmiles);
 
-    function buildDropdown() {
-    const select = document.getElementById("molSelect");
-    select.innerHTML = "";
+    document.getElementById("smilesInput")
+        .addEventListener("keypress", (e) => {
+            if (e.key === "Enter") generateFromSmiles();
+        });
 
-    for (const key in molecules) {
-        const option = document.createElement("option");
-        option.value = key;
-        option.textContent = key;
-        select.appendChild(option);
-    }
+    buildDropdown();
+    setStatus("Prêt");
 }
 
-    setStatus("Prêt (mode 100% offline)");
-}
-
-// 🔥 Base molécules locale
-const molecules = {
-    eau: `eau
-  local
-
-  3  2  0  0  0  0            999 V2000
-    0.0000    0.0000    0.0000 O
-    0.9584    0.0000    0.0000 H
-   -0.2390    0.9270    0.0000 H
-  1  2  1
-  1  3  1
-M  END
-`,
-    hcl: `hcl
-  local
-
-  2  1  0  0  0  0            999 V2000
-    0.0000    0.0000    0.0000 H
-    1.2700    0.0000    0.0000 Cl
-  1  2  1
-M  END
-`,
-    naoh: `naoh
-  local
-
-  3  2  0  0  0  0            999 V2000
-   -1.2000    0.0000    0.0000 Na
-    0.0000    0.0000    0.0000 O
-    1.0000    0.0000    0.0000 H
-  1  2  1
-  2  3  1
-M  END
-`,
-    carbon_monoxide: `carbon_monoxide
-  local
-
-  2  1  0  0  0  0            999 V2000
-    0.0000    0.0000    0.0000 C
-    1.1280    0.0000    0.0000 O
-  1  2  3
-M  END
-`,
-    carbon_dioxide: `carbon_dioxide
-  local
-
-  3  2  0  0  0  0            999 V2000
-   -1.1600    0.0000    0.0000 O
-    0.0000    0.0000    0.0000 C
-    1.1600    0.0000    0.0000 O
-  1  2  2
-  2  3  2
-M  END
-`,
-    ethanol: `ethanol
-  local
-
-  9  8  0  0  0  0            999 V2000
-    0.0000    0.0000    0.0000 C
-    1.5400    0.0000    0.0000 C
-    2.0900    1.2000    0.0000 O
-    0.0000    1.0000    0.0000 H
-    0.0000   -0.5000    0.9000 H
-    0.0000   -0.5000   -0.9000 H
-    1.5400   -0.5000    0.9000 H
-    1.5400   -0.5000   -0.9000 H
-    2.0900    1.7000    0.9000 H
-  1  2  1
-  2  3  1
-  1  4  1
-  1  5  1
-  1  6  1
-  2  7  1
-  2  8  1
-  3  9  1
-M  END
-`,
-
-    benzene: `benzene
-  local
-
-  6  6  0  0  0  0            999 V2000
-    1.3960    0.0000    0.0000 C
-    0.6980    1.2090    0.0000 C
-   -0.6980    1.2090    0.0000 C
-   -1.3960    0.0000    0.0000 C
-   -0.6980   -1.2090    0.0000 C
-    0.6980   -1.2090    0.0000 C
-  1  2  2
-  2  3  1
-  3  4  2
-  4  5  1
-  5  6  2
-  6  1  1
-M  END
-`,
-  
-  methane: `methane
-  local
-
-  5  4  0  0  0  0            999 V2000
-    0.0000    0.0000    0.0000 C
-    0.6291    0.6291    0.6291 H
-   -0.6291   -0.6291    0.6291 H
-   -0.6291    0.6291   -0.6291 H
-    0.6291   -0.6291   -0.6291 H
-  1  2  1
-  1  3  1
-  1  4  1
-  1  5  1
-M  END
-`,
-    
- ethane: `ethane
-  local
-
-  8  7  0  0  0  0            999 V2000
-   -0.7700    0.0000    0.0000 C
-    0.7700    0.0000    0.0000 C
-   -1.1400    0.8900    0.0000 H
-   -1.1400   -0.8900    0.0000 H
-    1.1400    0.8900    0.0000 H
-    1.1400   -0.8900    0.0000 H
-    0.0000    0.0000    0.8900 H
-   -0.0000    0.0000   -0.8900 H
-  1  2  1
-  1  3  1
-  1  4  1
-  2  5  1
-  2  6  1
-  1  7  1
-  2  8  1
-M  END
-`,
-   propane: `propane
-  local
-
-  11 10  0  0  0  0            999 V2000
-   -1.5400    0.0000    0.0000 C
-    0.0000    0.0000    0.0000 C
-    1.5400    0.0000    0.0000 C
-   -2.0000    0.9000    0.0000 H
-   -2.0000   -0.9000    0.0000 H
-    0.0000    0.9000    0.0000 H
-    0.0000   -0.9000    0.0000 H
-    2.0000    0.9000    0.0000 H
-    2.0000   -0.9000    0.0000 H
-   -1.5400    0.0000    0.9000 H
-    1.5400    0.0000    0.9000 H
-  1  2  1
-  2  3  1
-  1  4  1
-  1  5  1
-  2  6  1
-  2  7  1
-  3  8  1
-  3  9  1
-  1 10  1
-  3 11  1
-M  END
-`,
-    butane: `butane
-  local
-
-  14 13  0  0  0  0            999 V2000
-   -2.3100    0.0000    0.0000 C
-   -0.7700    0.0000    0.0000 C
-    0.7700    0.0000    0.0000 C
-    2.3100    0.0000    0.0000 C
-   -2.7700    0.9000    0.0000 H
-   -2.7700   -0.9000    0.0000 H
-   -0.7700    0.9000    0.0000 H
-   -0.7700   -0.9000    0.0000 H
-    0.7700    0.9000    0.0000 H
-    0.7700   -0.9000    0.0000 H
-    2.7700    0.9000    0.0000 H
-    2.7700   -0.9000    0.0000 H
-   -2.3100    0.0000    0.9000 H
-    2.3100    0.0000    0.9000 H
-  1  2  1
-  2  3  1
-  3  4  1
-  1  5  1
-  1  6  1
-  2  7  1
-  2  8  1
-  3  9  1
-  3 10  1
-  4 11  1
-  4 12  1
-  1 13  1
-  4 14  1
-M  END
-`,
-    pentane: `pentane
-  local
-
-  17 16  0  0  0  0            999 V2000
-   -3.0800    0.0000    0.0000 C
-   -1.5400    0.0000    0.0000 C
-    0.0000    0.0000    0.0000 C
-    1.5400    0.0000    0.0000 C
-    3.0800    0.0000    0.0000 C
-   -3.5400    0.9000    0.0000 H
-   -3.5400   -0.9000    0.0000 H
-   -1.5400    0.9000    0.0000 H
-   -1.5400   -0.9000    0.0000 H
-    0.0000    0.9000    0.0000 H
-    0.0000   -0.9000    0.0000 H
-    1.5400    0.9000    0.0000 H
-    1.5400   -0.9000    0.0000 H
-    3.5400    0.9000    0.0000 H
-    3.5400   -0.9000    0.0000 H
-   -3.0800    0.0000    0.9000 H
-    3.0800    0.0000    0.9000 H
-  1  2  1
-  2  3  1
-  3  4  1
-  4  5  1
-  1  6  1
-  1  7  1
-  2  8  1
-  2  9  1
-  3 10  1
-  3 11  1
-  4 12  1
-  4 13  1
-  5 14  1
-  5 15  1
-  1 16  1
-  5 17  1
-M  END
-`,
-    hexane: `hexane
-  local
-
-  20 19  0  0  0  0            999 V2000
-   -3.8500    0.0000    0.0000 C
-   -2.3100    0.0000    0.0000 C
-   -0.7700    0.0000    0.0000 C
-    0.7700    0.0000    0.0000 C
-    2.3100    0.0000    0.0000 C
-    3.8500    0.0000    0.0000 C
-   -4.3100    0.9000    0.0000 H
-   -4.3100   -0.9000    0.0000 H
-   -2.3100    0.9000    0.0000 H
-   -2.3100   -0.9000    0.0000 H
-   -0.7700    0.9000    0.0000 H
-   -0.7700   -0.9000    0.0000 H
-    0.7700    0.9000    0.0000 H
-    0.7700   -0.9000    0.0000 H
-    2.3100    0.9000    0.0000 H
-    2.3100   -0.9000    0.0000 H
-    3.8500    0.9000    0.0000 H
-    3.8500   -0.9000    0.0000 H
-   -3.8500    0.0000    0.9000 H
-    3.8500    0.0000    0.9000 H
-  1  2  1
-  2  3  1
-  3  4  1
-  4  5  1
-  5  6  1
-  1  7  1
-  1  8  1
-  2  9  1
-  2 10  1
-  3 11  1
-  3 12  1
-  4 13  1
-  4 14  1
-  5 15  1
-  5 16  1
-  6 17  1
-  6 18  1
-  1 19  1
-  6 20  1
-M  END
-`,
-  heptane: `heptane
-  local
-
-  23 22  0  0  0  0            999 V2000
-   -4.6200    0.0000    0.0000 C
-   -3.0800    0.0000    0.0000 C
-   -1.5400    0.0000    0.0000 C
-    0.0000    0.0000    0.0000 C
-    1.5400    0.0000    0.0000 C
-    3.0800    0.0000    0.0000 C
-    4.6200    0.0000    0.0000 C
-   -5.0800    0.9000    0.0000 H
-   -5.0800   -0.9000    0.0000 H
-   -3.0800    0.9000    0.0000 H
-   -3.0800   -0.9000    0.0000 H
-   -1.5400    0.9000    0.0000 H
-   -1.5400   -0.9000    0.0000 H
-    0.0000    0.9000    0.0000 H
-    0.0000   -0.9000    0.0000 H
-    1.5400    0.9000    0.0000 H
-    1.5400   -0.9000    0.0000 H
-    3.0800    0.9000    0.0000 H
-    3.0800   -0.9000    0.0000 H
-    4.6200    0.9000    0.0000 H
-    4.6200   -0.9000    0.0000 H
-   -4.6200    0.0000    0.9000 H
-    4.6200    0.0000    0.9000 H
-  1  2  1
-  2  3  1
-  3  4  1
-  4  5  1
-  5  6  1
-  6  7  1
-  1  8  1
-  1  9  1
-  2 10  1
-  2 11  1
-  3 12  1
-  3 13  1
-  4 14  1
-  4 15  1
-  5 16  1
-  5 17  1
-  6 18  1
-  6 19  1
-  7 20  1
-  7 21  1
-  1 22  1
-  7 23  1
-M  END
-`,  
-octane: `octane
-  local
-
-  26 25  0  0  0  0            999 V2000
-   -5.3900    0.0000    0.0000 C
-   -3.8500    0.0000    0.0000 C
-   -2.3100    0.0000    0.0000 C
-   -0.7700    0.0000    0.0000 C
-    0.7700    0.0000    0.0000 C
-    2.3100    0.0000    0.0000 C
-    3.8500    0.0000    0.0000 C
-    5.3900    0.0000    0.0000 C
-   -5.8500    0.9000    0.0000 H
-   -5.8500   -0.9000    0.0000 H
-   -3.8500    0.9000    0.0000 H
-   -3.8500   -0.9000    0.0000 H
-   -2.3100    0.9000    0.0000 H
-   -2.3100   -0.9000    0.0000 H
-   -0.7700    0.9000    0.0000 H
-   -0.7700   -0.9000    0.0000 H
-    0.7700    0.9000    0.0000 H
-    0.7700   -0.9000    0.0000 H
-    2.3100    0.9000    0.0000 H
-    2.3100   -0.9000    0.0000 H
-    3.8500    0.9000    0.0000 H
-    3.8500   -0.9000    0.0000 H
-    5.3900    0.9000    0.0000 H
-    5.3900   -0.9000    0.0000 H
-   -5.3900    0.0000    0.9000 H
-    5.3900    0.0000    0.9000 H
-  1  2  1
-  2  3  1
-  3  4  1
-  4  5  1
-  5  6  1
-  6  7  1
-  7  8  1
-  1  9  1
-  1 10  1
-  2 11  1
-  2 12  1
-  3 13  1
-  3 14  1
-  4 15  1
-  4 16  1
-  5 17  1
-  5 18  1
-  6 19  1
-  6 20  1
-  7 21  1
-  7 22  1
-  8 23  1
-  8 24  1
-  1 25  1
-  8 26  1
-M  END
-`
-};
-
-// 🔥 MENU DÉROULANT
+// 📦 MENU
 function buildDropdown() {
-    const select = document.createElement("select");
-    select.id = "molSelect";
+    const select = document.getElementById("molSelect");
 
     for (const key in molecules) {
         const option = document.createElement("option");
@@ -426,28 +37,42 @@ function buildDropdown() {
         option.textContent = key;
         select.appendChild(option);
     }
-
-    document.getElementById("panel").insertBefore(select, document.getElementById("btnGen"));
 }
 
-// 🔥 GENERATION CORRIGÉE
+// 🧪 GENERATE LOCAL
 function generate() {
-    const select = document.getElementById("molSelect");
-    const input = select.value;
+    const key = document.getElementById("molSelect").value;
 
-    if (!input) {
+    if (!key) {
         setStatus("Choisis une molécule");
         return;
     }
 
-    if (molecules[input]) {
-        display(molecules[input]);
-        setStatus("Molécule chargée (offline)");
-    } else {
-        setStatus("Molécule inconnue");
+    display(molecules[key]);
+    setStatus("Molécule chargée");
+}
+
+// 🔬 SMILES → 3D
+async function generateFromSmiles() {
+    const smiles = document.getElementById("smilesInput").value.trim();
+
+    if (!smiles) {
+        setStatus("Entre un SMILES");
+        return;
+    }
+
+    setStatus("Chargement...");
+
+    try {
+        const sdf = await smilesTo3D(smiles);
+        display(sdf);
+        setStatus("Molécule générée");
+    } catch {
+        setStatus("Erreur SMILES");
     }
 }
 
+// 🎯 DISPLAY
 function display(data) {
     viewer.clear();
     viewer.addModel(data, "sdf");
@@ -457,25 +82,23 @@ function display(data) {
         sphere: { scale: 0.3 }
     });
 
-    viewer.setStyle({ elem: "C" }, {
-        stick: { color: "black" },
-        sphere: { color: "black" }
-    });
-
     viewer.zoomTo();
     viewer.render();
 }
 
+// 🎯 EXEMPLE
 function loadExample() {
     document.getElementById("molSelect").value = "ethanol";
     generate();
 }
 
+// 📂 FILE
 function loadFile(e) {
     const file = e.target.files[0];
+    if (!file) return;
 
     const reader = new FileReader();
-    reader.onload = function(ev) {
+    reader.onload = (ev) => {
         display(ev.target.result);
         setStatus("Fichier chargé");
     };
@@ -483,6 +106,7 @@ function loadFile(e) {
     reader.readAsText(file);
 }
 
+// 📢 STATUS
 function setStatus(msg) {
     document.getElementById("status").innerText = msg;
 }
