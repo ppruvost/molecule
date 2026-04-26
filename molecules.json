@@ -1,19 +1,204 @@
 [
   {"name": "Eau"},
   {"name": "Dioxygène"},
+  {"name": "Ozone"},
+  {"name": "Dihydrogène"},
+  {"name": "Diazote"},
   {"name": "Dioxyde de carbone"},
+  {"name": "Monoxyde de carbone"},
+  {"name": "Ammoniac"},
   {"name": "Méthane"},
   {"name": "Éthane"},
   {"name": "Propane"},
   {"name": "Butane"},
+  {"name": "Pentane"},
+  {"name": "Hexane"},
+  {"name": "Heptane"},
+  {"name": "Octane"},
+  {"name": "Nonane"},
+  {"name": "Décane"},
+
+  {"name": "Éthène"},
+  {"name": "Propène"},
+  {"name": "Butène"},
+  {"name": "Acétylène"},
+  {"name": "Prop-1-yne"},
+
+  {"name": "Méthanol"},
   {"name": "Éthanol"},
-  {"name": "Acétone"},
-  {"name": "Acide acétique"},
-  {"name": "Glucose"},
-  {"name": "Ammoniac"},
-  {"name": "Acide chlorhydrique"},
-  {"name": "Benzène"},
-  {"name": "Phénol"},
+  {"name": "Propan-1-ol"},
+  {"name": "Propan-2-ol"},
+  {"name": "Butan-1-ol"},
+  {"name": "Butan-2-ol"},
+  {"name": "Pentanol"},
+  {"name": "Hexanol"},
+
+  {"name": "Éthanal"},
+  {"name": "Propanal"},
+  {"name": "Butanal"},
   {"name": "Formaldéhyde"},
-  {"name": "Urée"}
+  {"name": "Acétaldéhyde"},
+
+  {"name": "Acétone"},
+  {"name": "Butanone"},
+  {"name": "Pentanone"},
+
+  {"name": "Acide méthanoïque"},
+  {"name": "Acide éthanoïque"},
+  {"name": "Acide propanoïque"},
+  {"name": "Acide butanoïque"},
+  {"name": "Acide pentanoïque"},
+  {"name": "Acide hexanoïque"},
+
+  {"name": "Acide benzoïque"},
+  {"name": "Acide oxalique"},
+  {"name": "Acide citrique"},
+  {"name": "Acide lactique"},
+
+  {"name": "Éthanoate de méthyle"},
+  {"name": "Éthanoate d’éthyle"},
+  {"name": "Propanoate d’éthyle"},
+  {"name": "Butanoate d’éthyle"},
+
+  {"name": "Benzène"},
+  {"name": "Toluène"},
+  {"name": "Phénol"},
+  {"name": "Aniline"},
+  {"name": "Naphtalène"},
+
+  {"name": "Chlorométhane"},
+  {"name": "Dichlorométhane"},
+  {"name": "Trichlorométhane"},
+  {"name": "Tétrachlorométhane"},
+
+  {"name": "Fluorométhane"},
+  {"name": "Bromométhane"},
+  {"name": "Iodométhane"},
+
+  {"name": "Acide chlorhydrique"},
+  {"name": "Acide sulfurique"},
+  {"name": "Acide nitrique"},
+  {"name": "Acide phosphorique"},
+  {"name": "Acide carbonique"},
+
+  {"name": "Hydroxyde de sodium"},
+  {"name": "Hydroxyde de potassium"},
+  {"name": "Hydroxyde de calcium"},
+
+  {"name": "Chlorure de sodium"},
+  {"name": "Chlorure de potassium"},
+  {"name": "Chlorure de calcium"},
+  {"name": "Chlorure d’ammonium"},
+
+  {"name": "Sulfate de cuivre"},
+  {"name": "Sulfate de zinc"},
+  {"name": "Sulfate de fer"},
+  {"name": "Sulfate de magnésium"},
+
+  {"name": "Nitrate de potassium"},
+  {"name": "Nitrate d’ammonium"},
+  {"name": "Nitrate d’argent"},
+
+  {"name": "Carbonate de sodium"},
+  {"name": "Carbonate de calcium"},
+  {"name": "Hydrogénocarbonate de sodium"},
+
+  {"name": "Glucose"},
+  {"name": "Fructose"},
+  {"name": "Saccharose"},
+  {"name": "Lactose"},
+  {"name": "Amidon"},
+
+  {"name": "Glycine"},
+  {"name": "Alanine"},
+  {"name": "Sérine"},
+  {"name": "Acide aspartique"},
+
+  {"name": "Urée"},
+  {"name": "Acide urique"},
+
+  {"name": "Peroxyde d’hydrogène"},
+  {"name": "Eau de Javel"},
+  {"name": "Hypochlorite de sodium"},
+
+  {"name": "Acide acétylsalicylique"},
+  {"name": "Paracétamol"},
+  {"name": "Ibuprofène"},
+
+  {"name": "Glycérol"},
+  {"name": "Acide gras"},
+  {"name": "Triglycéride"},
+
+  {"name": "Acide oléique"},
+  {"name": "Acide stéarique"},
+  {"name": "Acide palmitique"},
+
+  {"name": "Formamide"},
+  {"name": "Acétamide"},
+
+  {"name": "Éthylamine"},
+  {"name": "Diméthylamine"},
+  {"name": "Triméthylamine"},
+
+  {"name": "Acétonitrile"},
+  {"name": "Propionitrile"},
+
+  {"name": "Dioxyde de soufre"},
+  {"name": "Trioxyde de soufre"},
+  {"name": "Monoxyde d’azote"},
+  {"name": "Dioxyde d’azote"},
+
+  {"name": "Sulfure d’hydrogène"},
+  {"name": "Phosphine"},
+
+  {"name": "Silice"},
+  {"name": "Alumine"},
+  {"name": "Oxyde de fer"},
+  {"name": "Oxyde de cuivre"},
+
+  {"name": "Éther diéthylique"},
+  {"name": "Tétrahydrofurane"},
+
+  {"name": "Acide formique"},
+  {"name": "Acide acétique"},
+  {"name": "Acide propionique"},
+
+  {"name": "Butadiène"},
+  {"name": "Isoprène"},
+
+  {"name": "Acide malonique"},
+  {"name": "Acide succinique"},
+
+  {"name": "Acide tartrique"},
+  {"name": "Acide malique"},
+
+  {"name": "Caféine"},
+  {"name": "Nicotine"},
+
+  {"name": "Acide glutamique"},
+  {"name": "Leucine"},
+
+  {"name": "Acide linoléique"},
+  {"name": "Acide linolénique"},
+
+  {"name": "Acide salicylique"},
+  {"name": "Résorcinol"},
+
+  {"name": "Acide benzoïque"},
+  {"name": "Anhydride acétique"},
+
+  {"name": "Formiate de sodium"},
+  {"name": "Acétate de sodium"},
+
+  {"name": "Acétate d’éthyle"},
+  {"name": "Acétate de méthyle"},
+
+  {"name": "Diméthylsulfoxyde"},
+  {"name": "Acide sulfurique dilué"},
+
+  {"name": "Chlorure de fer"},
+  {"name": "Chlorure de cuivre"},
+
+  {"name": "Acide perchlorique"},
+  {"name": "Acide fluorhydrique"}
 ]
