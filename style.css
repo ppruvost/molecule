@@ -4,11 +4,18 @@ body {
   background: #f4f4f4;
 }
 
+#viewer-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
 #viewer {
-  width: 800px;
-  height: 500px;
-  margin: 20px auto;
+  width: 600px;      /* ajuste taille ici */
+  height: 400px;     /* ajuste hauteur ici */
   border: 1px solid #ccc;
+  background: white;
 }
 
 select, input, button {
