@@ -20,20 +20,57 @@ body {
     top: 20px;
     left: 20px;
     z-index: 10;
-    background: rgba(0,0,0,0.8);
-    padding: 15px;
-    border-radius: 10px;
+
+    background: rgba(0, 0, 0, 0.85);
+    padding: 20px;
+    border-radius: 12px;
     color: white;
-    width: 250px;
+
+    width: 320px;            /* 🔥 plus large */
+    font-size: 16px;         /* 🔥 texte plus lisible */
 }
 
-button {
-    margin-top: 5px;
-    display: block;
+/* 🔥 TITRE */
+#panel h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* 🔥 INPUT / SELECT */
+#panel select,
+#panel input {
     width: 100%;
+    padding: 8px;
+    margin-top: 8px;
+    font-size: 15px;
+    border-radius: 6px;
+    border: none;
 }
 
-input, select {
+/* 🔥 BOUTONS */
+#panel button {
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+
+    background: #2563eb;
+    color: white;
+}
+
+#panel button:hover {
+    background: #1d4ed8;
+}
+
+/* 🔥 STATUS */
+#status {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #93c5fd;
+}
     width: 100%;
     margin-top: 5px;
 }
