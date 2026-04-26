@@ -1,50 +1,27 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Molécules 3D Studio</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
-
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Visualiseur Molécules 3D</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://3Dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
 </head>
 <body>
 
-<div id="panel">
-    <h2>Molécules 3D Studio</h2>
+<h1>🔬 Visualiseur molécules 3D (PubChem)</h1>
 
-    <select id="molSelect"></select>
-    <button id="btnGen">Générer</button>
-    <button id="btnExample">Exemple</button>
+<select id="moleculeSelect"></select>
 
-    <hr>
+<input type="text" id="smilesInput" placeholder="Entrer un SMILES">
+<button onclick="loadFromSmiles()">Afficher SMILES</button>
 
-    <input type="text" id="smilesInput" placeholder="Ex: CCO">
-    <button id="btnSmiles">Générer SMILES</button>
-
-    <hr>
-
-    <h3>Mode cours</h3>
-
-    <select id="familySelect"></select>
-    <select id="exampleSelect"></select>
-
-    <button id="btnCourse">Afficher</button>
-
-    <p id="courseInfo"></p>
-
-    <hr>
-
-    <input type="file" id="fileInput">
-
-    <p id="status"></p>
+<div id="info">
+  <p><strong>Formule :</strong> <span id="formula"></span></p>
+  <p><strong>Masse molaire :</strong> <span id="mass"></span> g/mol</p>
 </div>
 
 <div id="viewer"></div>
 
-    <script src="https://unpkg.com/@rdkit/rdkit/dist/RDKit_minimal.js"></script>
-    <script type="module" src="script.js"></script>
-
+<script src="app.js"></script>
 </body>
 </html>
