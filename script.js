@@ -1,6 +1,6 @@
 import { molecules } from "./library.js";
 import { families } from "./courseData.js";
-import { smilesTo3D } from "./obabelLoader.js";
+import { smilesTo3D_RDKit } from "./rdkitLoader.js";
 
 let viewer;
 
@@ -83,7 +83,7 @@ async function generateFromSmiles() {
     const smiles = document.getElementById("smilesInput").value;
 
     try {
-        const sdf = await smilesTo3D(smiles);
+        const sdf = await smilesTo3D_RDKit(smiles);
         display(sdf);
     } catch {
         setStatus("Erreur SMILES");
@@ -101,7 +101,7 @@ async function generateFromCourse() {
         family.nom + " : " + family.description;
 
     try {
-        const sdf = await smilesTo3D(smiles);
+        const sdf = await smilesTo3D_RDKit(smiles);
         display(sdf);
     } catch {
         setStatus("Erreur cours");
