@@ -1,105 +1,27 @@
-@echo off
-title Molecules 3D Studio - Guide pédagogique BAC PRO
-color 0B
+# 🔬 Visualiseur de molécules 3D
 
-echo ===============================================
-echo        MOLECULES 3D STUDIO - GUIDE
-echo ===============================================
-echo.
+Projet web permettant de visualiser des molécules en 3D via PubChem.
 
-echo OBJECTIF PEDAGOGIQUE :
-echo ----------------------
-echo Cet outil permet de visualiser des molecules en 3D
-echo pour comprendre :
-echo - la structure des molecules
-echo - les liaisons chimiques
-echo - la geometrie dans l espace
-echo.
+## Fonctionnalités
 
-echo NIVEAU :
-echo --------
-echo BAC PROFESSIONNEL
-echo (chimie, physique, sciences appliquees)
-echo.
+- Rotation souris
+- Zoom
+- Menu déroulant (niveau lycée)
+- Saisie SMILES
+- Affichage :
+  - formule brute
+  - masse molaire
 
-echo ===============================================
-echo UTILISATION DU LOGICIEL
-echo ===============================================
-echo.
+## Technologies
 
-echo 1. BIBLIOTHEQUE LOCALE :
-echo ------------------------
-echo - Selectionner une molecule dans la liste
-echo - Cliquer sur "Generer"
-echo - La molecule s affiche en 3D
-echo.
-echo Avantage :
-echo -> fonctionne SANS internet
-echo.
+- PubChem API
+- 3Dmol.js
+- JavaScript
 
-echo 2. GENERATION AVEC CODE SMILES :
-echo --------------------------------
-echo Le SMILES est une ecriture simplifiee d une molecule.
-echo.
+## Déploiement
 
-echo Exemples a tester :
-echo.
-echo CCO        = ethanol
-echo C          = methane
-echo CC         = ethane
-echo CCC        = propane
-echo c1ccccc1   = benzene
-echo CC(=O)O    = acide acetique
-echo.
+Compatible GitHub Pages / Vercel / Netlify
 
-echo Etapes :
-echo - Entrer le code SMILES
-echo - Cliquer sur "Generer depuis SMILES"
-echo - La molecule apparait en 3D
-echo.
+## Lancer
 
-echo Attention :
-echo -> necessite une connexion internet
-echo.
-
-echo 3. IMPORT DE FICHIER :
-echo ----------------------
-echo - Charger un fichier .SDF
-echo - Visualisation automatique
-echo.
-
-echo ===============================================
-echo INTERACTIONS 3D
-echo ===============================================
-echo.
-echo Souris :
-echo - Clic gauche : rotation
-echo - Molette : zoom
-echo - Clic droit : deplacement
-echo.
-
-echo ===============================================
-echo OBJECTIFS D APPRENTISSAGE
-echo ===============================================
-echo.
-echo - Comprendre la structure moleculaire
-echo - Identifier les atomes (C, H, O...)
-echo - Observer les liaisons chimiques
-echo - Relier formule chimique et structure 3D
-echo.
-
-echo ===============================================
-echo EXTENSIONS POSSIBLES
-echo ===============================================
-echo.
-echo - Ajouter de nouvelles molecules dans library.js
-echo - Utiliser des SMILES plus complexes
-echo - Etudier des molecules organiques
-echo.
-
-echo ===============================================
-echo FIN DU GUIDE
-echo ===============================================
-echo.
-pause
-
+Ouvrir index.html
