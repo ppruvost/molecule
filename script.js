@@ -4,9 +4,15 @@ import { smilesTo3D_RDKit } from "./rdkitLoader.js";
 
 let viewer;
 
-init();
+window.addEventListener("DOMContentLoaded", init);
 
 function init() {
+
+    if (!window.$3Dmol) {
+        console.error("3Dmol pas chargé");
+        return;
+    }
+
     viewer = $3Dmol.createViewer("viewer", {
         backgroundColor: "#1e3a8a"
     });
@@ -16,63 +22,83 @@ function init() {
         setTimeout(() => viewer.resize(), 300);
     });
 
-    document.getElementById("btnGen")?.addEventListener("click", generate);
-    document.getElementById("btnExample")?.addEventListener("click", loadExample);
-    document.getElementById("fileInput")?.addEventListener("change", loadFile);
-    document.getElementById("btnSmiles")?.addEventListener("click", generateFromSmiles);
-    document.getElementById("btnCourse")?.addEventListener("click", generateFromCourse);
-
-    document.getElementById("familySelect")?.addEventListener("change", updateExamples);
-
+    bindUI();
     buildDropdown();
     buildFamilyMenu();
 
     setStatus("Prêt");
 }
 
-/* 📦 MENU */
+/* 🔗 EVENTS */
+function bindUI() {
+    document.getElementById("btnGen").addEventListener("click", generate);
+    document.getElementById("btnExample").addEventListener("click", loadExample);
+    document.getElementById("fileInput").addEventListener("change", loadFile);
+    document.getElementById("btnSmiles").addEventListener("click", generateFromSmiles);
+    document.getElementById("btnCourse").addEventListener("click", generateFromCourse);
+
+    document.getElementById("familySelect")
+        .addEventListener("change", updateExamples);
+}
+
+/* 📦 MOLÉCULES */
 function buildDropdown() {
     const select = document.getElementById("molSelect");
+    if (!select || !molecules) return;
 
-    for (const key in molecules) {
-        const option = document.createElement("option");
-        option.value = key;
-        option.textContent = key;
-        select.appendChild(option);
-    }
+    select.innerHTML = "";
+
+    Object.keys(molecules).forEach(key => {
+        const opt = document.createElement("option");
+        opt.value = key;
+        opt.textContent = key;
+        select.appendChild(opt);
+    });
 }
 
 /* 🎓 FAMILLES */
 function buildFamilyMenu() {
     const select = document.getElementById("familySelect");
+    if (!select || !families) return;
 
-    for (const key in families) {
-        const option = document.createElement("option");
-        option.value = key;
-        option.textContent = families[key].nom;
-        select.appendChild(option);
-    }
+    select.innerHTML = "";
+
+    Object.keys(families).forEach(key => {
+        const opt = document.createElement("option");
+        opt.value = key;
+        opt.textContent = families[key].nom || key;
+        select.appendChild(opt);
+    });
 
     updateExamples();
 }
 
+/* 🧪 EXEMPLES */
 function updateExamples() {
-    const familyKey = document.getElementById("familySelect").value;
+    const familyKey = document.getElementById("familySelect")?.value;
     const exampleSelect = document.getElementById("exampleSelect");
+
+    if (!exampleSelect || !families?.[familyKey]) return;
 
     exampleSelect.innerHTML = "";
 
     families[familyKey].exemples.forEach(ex => {
-        const option = document.createElement("option");
-        option.value = ex.smiles;
-        option.textContent = ex.nom;
-        exampleSelect.appendChild(option);
+        const opt = document.createElement("option");
+        opt.value = ex.smiles;
+        opt.textContent = ex.nom;
+        exampleSelect.appendChild(opt);
     });
 }
 
 /* 🧪 LOCAL */
 function generate() {
     const key = document.getElementById("molSelect").value;
+
+    if (!molecules[key]) {
+        setStatus("Molécule introuvable");
+        return;
+    }
+
     display(molecules[key]);
 }
 
@@ -83,17 +109,19 @@ async function generateFromSmiles() {
     try {
         const sdf = await smilesTo3D_RDKit(smiles);
         display(sdf);
-    } catch {
+    } catch (e) {
+        console.error(e);
         setStatus("Erreur SMILES");
     }
 }
 
-/* 🎓 MODE COURS */
+/* 🎓 COURS */
 async function generateFromCourse() {
     const familyKey = document.getElementById("familySelect").value;
     const smiles = document.getElementById("exampleSelect").value;
 
-    const family = families[familyKey];
+    const family = families?.[familyKey];
+    if (!family) return;
 
     document.getElementById("courseInfo").innerText =
         family.nom + " : " + family.description;
@@ -101,7 +129,8 @@ async function generateFromCourse() {
     try {
         const sdf = await smilesTo3D_RDKit(smiles);
         display(sdf);
-    } catch {
+    } catch (e) {
+        console.error(e);
         setStatus("Erreur cours");
     }
 }
@@ -122,9 +151,12 @@ function display(data) {
 
 /* 📂 FILE */
 function loadFile(e) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
     const reader = new FileReader();
     reader.onload = (ev) => display(ev.target.result);
-    reader.readAsText(e.target.files[0]);
+    reader.readAsText(file);
 }
 
 function loadExample() {
