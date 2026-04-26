@@ -33,7 +33,9 @@ fetch("molecules.json")
     });
 
     // ✅ première molécule sûre
-    loadMolecule(molecules[0].name_en);
+    // Cherche une molécule fiable (ex: Methane)
+    const defaultMol = molecules.find(m => m.name_en === "Methane") || molecules[0];
+    loadMolecule(defaultMol.name_en);
   })
   .catch(err => {
     console.error("Erreur chargement JSON :", err);
