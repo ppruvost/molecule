@@ -11,7 +11,7 @@ export const molecules = {
   1  3  1
 M  END
 `,
-    hcl: `hcl
+    hcl: `HCl
   local
 
   2  1  0  0  0  0            999 V2000
@@ -20,7 +20,7 @@ M  END
   1  2  1
 M  END
 `,
-    naoh: `naoh
+    naoh: `NaOH
   local
 
   3  2  0  0  0  0            999 V2000
