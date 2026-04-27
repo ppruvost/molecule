@@ -14,7 +14,8 @@ function normalize(str) {
 }
 
 async function searchMolecule() {
-  const name = document.getElementById("search").value.trim();
+  const rawName = document.getElementById("search").value.trim();
+const name = normalize(rawName);
 
   if (!name) return;
 
