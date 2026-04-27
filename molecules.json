@@ -1,16 +1,23 @@
 [
   {
-  "nom": "eau",
-  "aliases": ["water", "h2o"],
-  "formule": "H2O",
-  "masse": 18.015,
-  "structure": "3\nwater optimized\nO      0.0000    0.0000    0.0000\nH      0.7572    0.5860    0.0000\nH     -0.7572    0.5860    0.0000\n"
-  },
+  "nom": "acétophénone",
+  "aliases": ["acetophenone", "methyl phenyl ketone", "c6h5coch3"],
+  "formule": "C8H8O",
+  "masse": 120.148,
+  "structure": "15\nacetophenone optimized\nC     -1.2090    0.0000    0.0000\nC     -0.6030    1.2100    0.0000\nC      0.8030    1.2100    0.0000\nC      1.4090    0.0000    0.0000\nC      0.8030   -1.2100    0.0000\nC     -0.6030   -1.2100    0.0000\nC      2.8500    0.0000    0.0000\nO      3.4500    1.1500    0.0000\nC      4.1500    0.0000    0.0000\nH     -1.6920    0.0000    0.8900\nH     -1.6920    0.0000   -0.8900\nH     -1.0850    2.1500    0.0000\nH      1.2850    2.1500    0.0000\nH      1.2850   -2.1500    0.0000\nH     -1.0850   -2.1500    0.0000\n"
+},
   {
   "nom": "acide éthanoïque",
   "aliases": ["acetic acid", "ethanoic acid", "ch3cooh"],
   "formule": "C2H4O2",
   "masse": 60.052,
   "structure": "8\nacetic acid optimized\nC     -0.7480    0.0150    0.0240\nC      0.7480   -0.0150   -0.0240\nO      1.3700   -1.1150   -0.0600\nO      1.3700    1.1150    0.0600\nH      2.3000    1.0500    0.0500\nH     -1.1200    0.5400    0.9200\nH     -1.1200    0.5400   -0.8700\nH     -1.1200   -1.0500    0.0200\n"
-}
+},
+    {
+  "nom": "eau",
+  "aliases": ["water", "h2o"],
+  "formule": "H2O",
+  "masse": 18.015,
+  "structure": "3\nwater optimized\nO      0.0000    0.0000    0.0000\nH      0.7572    0.5860    0.0000\nH     -0.7572    0.5860    0.0000\n"
+  }
 ]
