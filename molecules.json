@@ -1,4 +1,3 @@
-// géométrie optimisée (type calcul quantique HF/DFT, proche Gaussian/ORCA)
 [
   {
   "nom": "eau",
@@ -6,7 +5,7 @@
   "formule": "H2O",
   "masse": 18.015,
   "structure": "3\nwater optimized\nO      0.0000    0.0000    0.0000\nH      0.7572    0.5860    0.0000\nH     -0.7572    0.5860    0.0000\n"
-  }
+  },
   {
   "nom": "acide éthanoïque",
   "aliases": ["acetic acid", "ethanoic acid", "ch3cooh"],
