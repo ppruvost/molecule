@@ -10,9 +10,8 @@ async function searchMolecule() {
   if (!name) return;
 
   try {
-    // 🔹 Infos chimiques
+    // 🔹 API PubChem
     const infoUrl = `https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/${name}/property/MolecularFormula,MolecularWeight/JSON`;
-
     const infoRes = await fetch(infoUrl);
     const infoData = await infoRes.json();
 
@@ -21,9 +20,7 @@ async function searchMolecule() {
     document.getElementById("formule").textContent = props.MolecularFormula;
     document.getElementById("masse").textContent = props.MolecularWeight;
 
-    // 🔹 Structure 3D
     const structureUrl = `https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/${name}/record/SDF/?record_type=3d`;
-
     const sdfRes = await fetch(structureUrl);
     const sdf = await sdfRes.text();
 
@@ -33,12 +30,13 @@ async function searchMolecule() {
     viewer.zoomTo();
     viewer.render();
 
-  catch (error) {
-  console.warn("API échouée, tentative locale...");
+  } catch (error) {
 
-  fetch("molecules.json")
-    .then(res => res.json())
-    .then(localData => {
+    console.warn("API échouée → fallback local");
+
+    try {
+      const res = await fetch("molecules.json");
+      const localData = await res.json();
 
       const nameLower = name.toLowerCase();
 
@@ -52,20 +50,18 @@ async function searchMolecule() {
         return;
       }
 
-      // Affichage des infos
       document.getElementById("formule").textContent = mol.formule;
       document.getElementById("masse").textContent = mol.masse;
 
-      // Affichage 3D
       viewer.clear();
       viewer.addModel(mol.structure, "xyz");
       viewer.setStyle({}, { stick: {}, sphere: { scale: 0.3 } });
       viewer.zoomTo();
       viewer.render();
-    })
-    .catch(err => {
+
+    } catch (err) {
       alert("Erreur locale");
       console.error(err);
-    });
-}
+    }
+  }
 }
