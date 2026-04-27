@@ -57,8 +57,7 @@ const name = normalize(rawName);
 
       if (!mol) {
         alert("Molécule non trouvée");
-        return;
-      }
+        return;      
       }
 
       document.getElementById("formule").textContent = mol.formule;
