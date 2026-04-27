@@ -1,4 +1,8 @@
-let viewer = $3Dmol.createViewer("viewer", { backgroundColor: "white" });
+let viewer;
+
+window.onload = function () {
+  viewer = $3Dmol.createViewer("viewer", { backgroundColor: "white" });
+};
 
 async function searchMolecule() {
   const name = document.getElementById("search").value.trim();
