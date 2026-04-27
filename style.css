@@ -4,18 +4,37 @@ body {
   background: #f4f4f4;
 }
 
+/* Bloc info */
+#info {
+  margin-top: 15px;
+}
+
+/* Conteneur principal du viewer */
 #viewer-container {
   width: 700px;
   margin: 20px auto;
+  display: flex;
+  justify-content: center;
 }
 
+/* Zone du viewer */
 #viewer {
   width: 100%;
   height: 450px;
   border: 1px solid #ccc;
   background: white;
+  position: relative;      /* 🔥 IMPORTANT */
+  overflow: hidden;        /* 🔥 empêche débordement */
 }
 
+/* Canvas généré par 3Dmol */
+#viewer canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Inputs */
 input {
   padding: 10px;
   width: 250px;
