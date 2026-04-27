@@ -5,6 +5,13 @@ window.addEventListener("DOMContentLoaded", () => {
     backgroundColor: "white"
   });
 });
+// 🔧 Normalisation (à placer ici, en haut du fichier)
+function normalize(str) {
+  return str
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
 
 async function searchMolecule() {
   const name = document.getElementById("search").value.trim();
@@ -43,8 +50,8 @@ async function searchMolecule() {
       const nameLower = name.toLowerCase();
 
       const mol = localData.find(m =>
-        m.nom === nameLower ||
-        (m.aliases && m.aliases.includes(nameLower))
+        normalize(m.nom).includes(query) ||
+        (m.aliases && m.aliases.some(alias => normalize(alias).includes(query)))
       );
 
       if (!mol) {
