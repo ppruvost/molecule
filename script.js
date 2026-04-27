@@ -48,16 +48,17 @@ const name = normalize(rawName);
       const res = await fetch("molecules.json");
       const localData = await res.json();
 
-      const nameLower = name.toLowerCase();
+      const query = normalize(name);
 
       const mol = localData.find(m =>
         normalize(m.nom).includes(query) ||
-        (m.aliases && m.aliases.some(alias => normalize(alias).includes(query)))
+        (m.aliases && m.aliases.some(a => normalize(a).includes(query)))
       );
 
       if (!mol) {
         alert("Molécule non trouvée");
         return;
+      }
       }
 
       document.getElementById("formule").textContent = mol.formule;
