@@ -33,8 +33,39 @@ async function searchMolecule() {
     viewer.zoomTo();
     viewer.render();
 
-  } catch (error) {
-    alert("Molécule non trouvée ou erreur API");
-    console.error(error);
-  }
+  catch (error) {
+  console.warn("API échouée, tentative locale...");
+
+  fetch("molecules.json")
+    .then(res => res.json())
+    .then(localData => {
+
+      const nameLower = name.toLowerCase();
+
+      const mol = localData.find(m =>
+        m.nom === nameLower ||
+        (m.aliases && m.aliases.includes(nameLower))
+      );
+
+      if (!mol) {
+        alert("Molécule non trouvée");
+        return;
+      }
+
+      // Affichage des infos
+      document.getElementById("formule").textContent = mol.formule;
+      document.getElementById("masse").textContent = mol.masse;
+
+      // Affichage 3D
+      viewer.clear();
+      viewer.addModel(mol.structure, "xyz");
+      viewer.setStyle({}, { stick: {}, sphere: { scale: 0.3 } });
+      viewer.zoomTo();
+      viewer.render();
+    })
+    .catch(err => {
+      alert("Erreur locale");
+      console.error(err);
+    });
+}
 }
