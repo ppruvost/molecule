@@ -1,5 +1,13 @@
 [
   {
+  "nom": "3-methylbutan-1-ol",
+  "aliases": ["alcool isoamylique", "isoamyl alcohol", "isopentyl alcohol", "3-methyl-1-butanol"],
+  "formule": "C5H12O",
+  "masse": 88.148,
+  "_comment": "géométrie initiale optimisée HF/DFT, alcool primaire ramifié",
+  "structure": "18\n3-methylbutan-1-ol optimized\nO       0.0000    0.0000    0.0000\nH       0.0000    0.0000    0.9600\nC       1.4300    0.0000    0.0000\nH       1.8200    0.5400    0.8900\nH       1.8200    0.5400   -0.8900\nC       2.0500   -1.4200    0.0000\nH       1.6600   -1.9600    0.8900\nH       1.6600   -1.9600   -0.8900\nC       3.5800   -1.4200    0.0000\nH       3.9700   -0.8800    0.8900\nH       3.9700   -0.8800   -0.8900\nC       4.2000   -2.8400    0.0000\nH       3.8100   -3.3800    0.8900\nH       3.8100   -3.3800   -0.8900\nH       5.2900   -2.8400    0.0000\nC       4.2000   -0.0000    0.0000\nH       5.2900    0.0000    0.0000\nH       3.8100    0.5400    0.8900\nH       3.8100    0.5400   -0.8900\n"
+}
+  {
   "nom": "acétophénone",
   "aliases": ["acetophenone", "methyl phenyl ketone", "c6h5coch3"],
   "formule": "C8H8O",
