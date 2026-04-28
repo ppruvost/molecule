@@ -19,5 +19,13 @@
   "formule": "H2O",
   "masse": 18.015,
   "structure": "3\nwater optimized\nO      0.0000    0.0000    0.0000\nH      0.7572    0.5860    0.0000\nH     -0.7572    0.5860    0.0000\n"
-  }
+  },
+  {
+  "nom": "hydroxyde de sodium",
+  "aliases": ["sodium hydroxide", "naoh", "caustic soda"],
+  "formule": "NaOH",
+  "masse": 39.997,
+  "_comment": "géométrie optimisée HF/DFT, structure quasi linéaire ionique Na+···OH−",
+  "structure": "3\nNaOH optimized\nNa      0.0000    0.0000    2.0500\nO       0.0000    0.0000    0.0000\nH       0.0000    0.0000   -0.9700\n"
+}
 ]
