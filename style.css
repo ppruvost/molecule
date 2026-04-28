@@ -1,46 +1,97 @@
 body {
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   text-align: center;
   background: #f4f4f4;
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-/* Bloc info */
+/* Titre */
+h1 {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  margin-bottom: 20px;
+}
+
+/* Bloc recherche */
+.search-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* Input */
+input {
+  padding: 12px;
+  width: min(300px, 90%);
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+/* Bouton */
+button {
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  background: #2d6cdf;
+  color: white;
+}
+
+/* Infos molécule */
 #info {
-  margin-top: 15px;
+  margin: 20px auto;
+  max-width: 500px;
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 
-/* Conteneur principal du viewer */
+/* Conteneur viewer */
 #viewer-container {
-  width: 700px;
+  width: 100%;
+  max-width: 900px;
   margin: 20px auto;
   display: flex;
   justify-content: center;
 }
 
-/* Zone du viewer */
+/* Viewer 3D */
 #viewer {
   width: 100%;
-  height: 450px;
+  height: min(70vw, 500px);
+  min-height: 300px;
   border: 1px solid #ccc;
+  border-radius: 12px;
   background: white;
-  position: relative;      /* 🔥 IMPORTANT */
-  overflow: hidden;        /* 🔥 empêche débordement */
+  position: relative;
+  overflow: hidden;
 }
 
-/* Canvas généré par 3Dmol */
+/* Canvas généré */
 #viewer canvas {
-  display: block;
   width: 100% !important;
   height: 100% !important;
+  display: block;
 }
 
-/* Inputs */
-input {
-  padding: 10px;
-  width: 250px;
-}
+/* Responsive mobile */
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+  }
 
-button {
-  padding: 10px;
-  cursor: pointer;
+  button {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  #viewer {
+    min-height: 280px;
+  }
 }
