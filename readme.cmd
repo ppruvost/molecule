@@ -1,4 +1,4 @@
-# 🔬 Visualiseur de molécules 3D
+# 🔬 Molécules 3D
 
 Projet web permettant de visualiser des molécules en 3D via PubChem.
 
