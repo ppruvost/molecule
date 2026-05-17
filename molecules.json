@@ -53,6 +53,14 @@
   "_comment": "structure initiale simplifiée du carbonate de calcium ; sel minéral ionique avec anion carbonate trigonal plan et cation calcium, géométrie de départ approximative",
   "structure": "5\ncalcium carbonate initial structure\nCa       0.0000    0.0000    0.0000\nC        2.4000    0.0000    0.0000\nO        3.2000    1.2000    0.0000\nO        3.2000   -1.2000    0.0000\nO        1.6000    0.0000    0.0000\n"
 },
+  {
+  "nom": "dichlorure de calcium",
+  "aliases": ["chlorure de calcium", "calcium chloride", "CaCl2"],
+  "formule": "CaCl2",
+  "masse": 110.98,
+  "_comment": "structure initiale simplifiée du chlorure de calcium anhydre ; sel minéral ionique avec cation calcium et deux anions chlorure, géométrie de départ approximative",
+  "structure": "3\ncalcium chloride initial structure\nCl      -2.2000    0.0000    0.0000\nCa       0.0000    0.0000    0.0000\nCl       2.2000    0.0000    0.0000\n"
+},
     {
   "nom": "eau",
   "aliases": ["water", "h2o"],
