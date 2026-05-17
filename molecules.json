@@ -45,6 +45,14 @@
   "_comment": "structure initiale simplifiée du borax décahydraté ; sel minéral ionique avec anion tétraborate et molécules d’eau de cristallisation, géométrie de départ approximative",
   "structure": "23\nborax simplified initial structure\nNa      -2.5000    0.0000    0.0000\nNa       2.5000    0.0000    0.0000\nB       -0.8000    1.2000    0.0000\nB        0.8000    1.2000    0.0000\nB       -0.8000   -1.2000    0.0000\nB        0.8000   -1.2000    0.0000\nO       -1.6000    2.2000    0.0000\nO        1.6000    2.2000    0.0000\nO       -1.6000   -2.2000    0.0000\nO        1.6000   -2.2000    0.0000\nO        0.0000    0.0000    0.0000\nO        0.0000    2.4000    0.0000\nO        0.0000   -2.4000    0.0000\nO       -3.5000    1.2000    0.0000\nH       -4.1000    1.8000    0.0000\nH       -3.0000    1.8000    0.8900\nO        3.5000   -1.2000    0.0000\nH        4.1000   -1.8000    0.0000\nH        3.0000   -1.8000   -0.8900\nO       -3.5000   -1.2000    0.0000\nH       -4.1000   -1.8000    0.0000\nO        3.5000    1.2000    0.0000\nH        4.1000    1.8000    0.0000\n"
 },
+  {
+  "nom": "carbonate de calcium",
+  "aliases": ["calcium carbonate", "calcite", "CaCO3"],
+  "formule": "CaCO3",
+  "masse": 100.086,
+  "_comment": "structure initiale simplifiée du carbonate de calcium ; sel minéral ionique avec anion carbonate trigonal plan et cation calcium, géométrie de départ approximative",
+  "structure": "5\ncalcium carbonate initial structure\nCa       0.0000    0.0000    0.0000\nC        2.4000    0.0000    0.0000\nO        3.2000    1.2000    0.0000\nO        3.2000   -1.2000    0.0000\nO        1.6000    0.0000    0.0000\n"
+},
     {
   "nom": "eau",
   "aliases": ["water", "h2o"],
