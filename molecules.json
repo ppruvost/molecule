@@ -69,6 +69,14 @@
   "_comment": "structure initiale simplifiée du chlorure de magnésium hexahydraté ; sel ionique hydraté avec cation magnésium coordonné à six molécules d’eau et deux anions chlorure, géométrie de départ approximative",
   "structure": "21\nmagnesium chloride hexahydrate initial structure\nMg       0.0000    0.0000    0.0000\nCl      -3.2000    0.0000    0.0000\nCl       3.2000    0.0000    0.0000\nO        0.0000    2.1000    0.0000\nH        0.7600    2.5000    0.0000\nH       -0.7600    2.5000    0.0000\nO        0.0000   -2.1000    0.0000\nH        0.7600   -2.5000    0.0000\nH       -0.7600   -2.5000    0.0000\nO        2.1000    0.0000    0.0000\nH        2.5000    0.7600    0.0000\nH        2.5000   -0.7600    0.0000\nO       -2.1000    0.0000    0.0000\nH       -2.5000    0.7600    0.0000\nH       -2.5000   -0.7600    0.0000\nO        0.0000    0.0000    2.1000\nH        0.7600    0.0000    2.5000\nH       -0.7600    0.0000    2.5000\nO        0.0000    0.0000   -2.1000\nH        0.7600    0.0000   -2.5000\nH       -0.7600    0.0000   -2.5000\n"
 },
+  {
+  "nom": "disodium tétraborate anhydre",
+  "aliases": ["tétraborate de disodium anhydre", "anhydrous sodium tetraborate", "Na2B4O7"],
+  "formule": "Na2B4O7",
+  "masse": 201.22,
+  "_comment": "structure initiale simplifiée du disodium tétraborate anhydre ; sel minéral ionique avec anion tétraborate et deux cations sodium, géométrie de départ approximative",
+  "structure": "13\ndisodium tetraborate anhydrous initial structure\nNa      -2.6000    0.0000    0.0000\nNa       2.6000    0.0000    0.0000\nB       -0.9000    1.2000    0.0000\nB        0.9000    1.2000    0.0000\nB       -0.9000   -1.2000    0.0000\nB        0.9000   -1.2000    0.0000\nO       -1.7000    2.2000    0.0000\nO        1.7000    2.2000    0.0000\nO       -1.7000   -2.2000    0.0000\nO        1.7000   -2.2000    0.0000\nO        0.0000    0.0000    0.0000\nO        0.0000    2.4000    0.0000\nO        0.0000   -2.4000    0.0000\n"
+},
     {
   "nom": "eau",
   "aliases": ["water", "h2o"],
