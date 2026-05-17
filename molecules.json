@@ -117,6 +117,14 @@
   "structure": "30\nmethyl orange initial structure\nC       0.0000    1.4000    0.0000\nC       1.2000    0.7000    0.0000\nC       1.2000   -0.7000    0.0000\nC       0.0000   -1.4000    0.0000\nC      -1.2000   -0.7000    0.0000\nC      -1.2000    0.7000    0.0000\nN       2.4000    0.0000    0.0000\nN       3.6000    0.0000    0.0000\nC       4.8000    0.0000    0.0000\nC       6.0000    0.7000    0.0000\nC       6.0000   -0.7000    0.0000\nC       7.2000    0.0000    0.0000\nC       8.4000    0.7000    0.0000\nC       8.4000   -0.7000    0.0000\nS       9.6000    0.0000    0.0000\nO      10.8000    0.8000    0.0000\nO      10.8000   -0.8000    0.0000\nO       9.6000    0.0000    1.2000\nNa     -2.8000    0.0000    0.0000\nN       2.4000    1.2000    0.0000\nC       3.6000    1.9000    0.0000\nC       4.8000    2.6000    0.0000\nH       4.8000    3.6000    0.0000\nH       4.8000    2.6000    1.0900\nH       3.6000    1.9000    1.0900\nH       6.0000    1.8000    0.0000\nH       6.0000   -1.8000    0.0000\nH       8.4000    1.8000    0.0000\nH       8.4000   -1.8000    0.0000\n"
 },
   {
+  "nom": "hydrogène peroxyde",
+  "aliases": ["peroxyde d’hydrogène", "hydrogen peroxide", "eau oxygénée"],
+  "formule": "H2O2",
+  "masse": 34.01,
+  "_comment": "structure initiale du peroxyde d’hydrogène ; molécule non plane avec liaison O–O caractéristique, géométrie de départ simplifiée non optimisée",
+  "structure": "4\nhydrogen peroxide initial structure\nO       0.0000    0.0000    0.0000\nO       1.4500    0.0000    0.0000\nH      -0.4000    0.9000    0.0000\nH       1.8500   -0.9000    0.0000\n"
+},
+  {
   "nom": "hydroxyde de sodium",
   "aliases": ["sodium hydroxide", "naoh", "caustic soda"],
   "formule": "NaOH",
