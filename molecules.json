@@ -78,6 +78,13 @@
   "structure": "13\ndisodium tetraborate anhydrous initial structure\nNa      -2.6000    0.0000    0.0000\nNa       2.6000    0.0000    0.0000\nB       -0.9000    1.2000    0.0000\nB        0.9000    1.2000    0.0000\nB       -0.9000   -1.2000    0.0000\nB        0.9000   -1.2000    0.0000\nO       -1.7000    2.2000    0.0000\nO        1.7000    2.2000    0.0000\nO       -1.7000   -2.2000    0.0000\nO        1.7000   -2.2000    0.0000\nO        0.0000    0.0000    0.0000\nO        0.0000    2.4000    0.0000\nO        0.0000   -2.4000    0.0000\n"
 },
   {
+  "nom": "eau",
+  "aliases": ["water", "h2o"],
+  "formule": "H2O",
+  "masse": 18.015,
+  "structure": "3\nwater optimized\nO      0.0000    0.0000    0.0000\nH      0.7572    0.5860    0.0000\nH     -0.7572    0.5860    0.0000\n"
+  },
+  {
   "nom": "éosine",
   "aliases": ["eosin", "eosin Y", "tétrabromofluorescéine", "eosin yellowish"],
   "formule": "C20H8Br4O5",
@@ -85,13 +92,14 @@
   "_comment": "structure initiale approximative de l’éosine Y ; dérivé tétrabromé de la fluorescéine avec noyau xanthène aromatique, géométrie de départ à affiner par optimisation quantique",
   "structure": "37\neosin Y initial structure\nC       0.0000    1.4000    0.0000\nC       1.2100    0.7000    0.0000\nC       1.2100   -0.7000    0.0000\nC       0.0000   -1.4000    0.0000\nC      -1.2100   -0.7000    0.0000\nC      -1.2100    0.7000    0.0000\nO       0.0000    2.6000    0.0000\nC       2.5000    1.4000    0.0000\nC       3.7000    0.7000    0.0000\nC       3.7000   -0.7000    0.0000\nC       2.5000   -1.4000    0.0000\nO       4.9000    1.3000    0.0000\nO       4.9000   -1.3000    0.0000\nC      -2.5000    1.4000    0.0000\nC      -3.7000    0.7000    0.0000\nC      -3.7000   -0.7000    0.0000\nC      -2.5000   -1.4000    0.0000\nBr     -5.3000    1.3000    0.0000\nBr     -5.3000   -1.3000    0.0000\nBr      5.3000    2.8000    0.0000\nBr      5.3000   -2.8000    0.0000\nO       0.0000    0.0000    0.0000\nC       0.0000    3.8000    0.0000\nO       0.0000    5.0000    0.0000\nH       2.5000    2.5000    0.0000\nH       2.5000   -2.5000    0.0000\nH      -2.5000    2.5000    0.0000\nH      -2.5000   -2.5000    0.0000\nH       1.2100    0.7000    1.0900\nH       1.2100   -0.7000   -1.0900\nH      -1.2100    0.7000   -1.0900\nH      -1.2100   -0.7000    1.0900\nH       3.7000    0.7000    1.0900\nH       3.7000   -0.7000   -1.0900\nH      -3.7000    0.7000   -1.0900\nH      -3.7000   -0.7000    1.0900\n"
 },
-    {
-  "nom": "eau",
-  "aliases": ["water", "h2o"],
-  "formule": "H2O",
-  "masse": 18.015,
-  "structure": "3\nwater optimized\nO      0.0000    0.0000    0.0000\nH      0.7572    0.5860    0.0000\nH     -0.7572    0.5860    0.0000\n"
-  },
+  {
+  "nom": "éther diéthylique",
+  "aliases": ["diethyl ether", "éthoxyéthane", "oxyde de diéthyle"],
+  "formule": "C4H10O",
+  "masse": 74.12,
+  "_comment": "structure initiale simplifiée de l’éther diéthylique (CH3-CH2-O-CH2-CH3) ; conformation éclipsée approximative, géométrie de départ à optimiser",
+  "structure": "15\ndiethyl ether initial structure\nC       -2.1000    0.0000    0.0000\nC       -0.7000    0.0000    0.0000\nO        0.7000    0.0000    0.0000\nC        2.1000    0.0000    0.0000\nC        3.5000    0.0000    0.0000\nH       -2.5000    0.9000    0.0000\nH       -2.5000   -0.9000    0.0000\nH       -2.1000    0.0000    1.0900\nH       -0.7000    0.0000   -1.0900\nH       -0.7000    0.0000    1.0900\nH        2.1000    0.0000   -1.0900\nH        2.1000    0.0000    1.0900\nH        3.9000    0.9000    0.0000\nH        3.9000   -0.9000    0.0000\nH        3.5000    0.0000    1.0900\n"
+},
   {
   "nom": "hydroxyde de sodium",
   "aliases": ["sodium hydroxide", "naoh", "caustic soda"],
