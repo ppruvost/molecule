@@ -93,6 +93,14 @@
   "structure": "37\neosin Y initial structure\nC       0.0000    1.4000    0.0000\nC       1.2100    0.7000    0.0000\nC       1.2100   -0.7000    0.0000\nC       0.0000   -1.4000    0.0000\nC      -1.2100   -0.7000    0.0000\nC      -1.2100    0.7000    0.0000\nO       0.0000    2.6000    0.0000\nC       2.5000    1.4000    0.0000\nC       3.7000    0.7000    0.0000\nC       3.7000   -0.7000    0.0000\nC       2.5000   -1.4000    0.0000\nO       4.9000    1.3000    0.0000\nO       4.9000   -1.3000    0.0000\nC      -2.5000    1.4000    0.0000\nC      -3.7000    0.7000    0.0000\nC      -3.7000   -0.7000    0.0000\nC      -2.5000   -1.4000    0.0000\nBr     -5.3000    1.3000    0.0000\nBr     -5.3000   -1.3000    0.0000\nBr      5.3000    2.8000    0.0000\nBr      5.3000   -2.8000    0.0000\nO       0.0000    0.0000    0.0000\nC       0.0000    3.8000    0.0000\nO       0.0000    5.0000    0.0000\nH       2.5000    2.5000    0.0000\nH       2.5000   -2.5000    0.0000\nH      -2.5000    2.5000    0.0000\nH      -2.5000   -2.5000    0.0000\nH       1.2100    0.7000    1.0900\nH       1.2100   -0.7000   -1.0900\nH      -1.2100    0.7000   -1.0900\nH      -1.2100   -0.7000    1.0900\nH       3.7000    0.7000    1.0900\nH       3.7000   -0.7000   -1.0900\nH      -3.7000    0.7000   -1.0900\nH      -3.7000   -0.7000    1.0900\n"
   },
   {
+  "nom": "ériochrome Black T",
+  "aliases": ["Eriochrome Black T", "EBT", "Solochrome Black T"],
+  "formule": "C20H12N3NaO7S",
+  "masse": 461.38,
+  "_comment": "structure initiale simplifiée de l’ériochrome Black T ; colorant azoïque complexe avec noyau naphtol-sulfonate et fonction azo, géométrie de départ approximative (forme ionique sodée)",
+  "structure": "40\neriochrome black t initial structure\nC       0.0000    1.4000    0.0000\nC       1.2000    0.7000    0.0000\nC       1.2000   -0.7000    0.0000\nC       0.0000   -1.4000    0.0000\nC      -1.2000   -0.7000    0.0000\nC      -1.2000    0.7000    0.0000\nN       2.4000    0.0000    0.0000\nN       3.6000    0.0000    0.0000\nC       4.8000    0.0000    0.0000\nC       6.0000    0.7000    0.0000\nC       6.0000   -0.7000    0.0000\nC       7.2000    0.0000    0.0000\nC       8.4000    0.7000    0.0000\nC       8.4000   -0.7000    0.0000\nC       9.6000    0.0000    0.0000\nO       9.6000    1.2000    0.0000\nS       9.6000   -1.4000    0.0000\nO      10.8000   -1.8000    0.0000\nO       8.4000   -2.2000    0.0000\nO       9.6000   -1.4000    1.2000\nNa     -2.8000    0.0000    0.0000\nH       2.4000    0.9000    0.0000\nH       2.4000   -0.9000    0.0000\nH       4.8000    0.9000    0.0000\nH       4.8000   -0.9000    0.0000\nH       6.0000    1.8000    0.0000\nH       6.0000   -1.8000    0.0000\nH       7.2000    0.0000    1.0900\nH       8.4000    1.8000    0.0000\nH       8.4000   -1.8000    0.0000\n"
+},
+  {
   "nom": "éther diéthylique",
   "aliases": ["diethyl ether", "éthoxyéthane", "oxyde de diéthyle"],
   "formule": "C4H10O",
@@ -100,6 +108,14 @@
   "_comment": "structure initiale simplifiée de l’éther diéthylique (CH3-CH2-O-CH2-CH3) ; conformation éclipsée approximative, géométrie de départ à optimiser",
   "structure": "15\ndiethyl ether initial structure\nC       -2.1000    0.0000    0.0000\nC       -0.7000    0.0000    0.0000\nO        0.7000    0.0000    0.0000\nC        2.1000    0.0000    0.0000\nC        3.5000    0.0000    0.0000\nH       -2.5000    0.9000    0.0000\nH       -2.5000   -0.9000    0.0000\nH       -2.1000    0.0000    1.0900\nH       -0.7000    0.0000   -1.0900\nH       -0.7000    0.0000    1.0900\nH        2.1000    0.0000   -1.0900\nH        2.1000    0.0000    1.0900\nH        3.9000    0.9000    0.0000\nH        3.9000   -0.9000    0.0000\nH        3.5000    0.0000    1.0900\n"
   },
+  {
+  "nom": "hélianthine",
+  "aliases": ["methyl orange", "orange de méthyle", "sodium 4-(dimethylamino)azobenzene-4'-sulfonate"],
+  "formule": "C14H14N3NaO3S",
+  "masse": 327.33,
+  "_comment": "structure initiale simplifiée de l’hélianthine (orange de méthyle) ; colorant azoïque avec noyau aromatique et groupement sulfonate sodé, géométrie de départ approximative",
+  "structure": "30\nmethyl orange initial structure\nC       0.0000    1.4000    0.0000\nC       1.2000    0.7000    0.0000\nC       1.2000   -0.7000    0.0000\nC       0.0000   -1.4000    0.0000\nC      -1.2000   -0.7000    0.0000\nC      -1.2000    0.7000    0.0000\nN       2.4000    0.0000    0.0000\nN       3.6000    0.0000    0.0000\nC       4.8000    0.0000    0.0000\nC       6.0000    0.7000    0.0000\nC       6.0000   -0.7000    0.0000\nC       7.2000    0.0000    0.0000\nC       8.4000    0.7000    0.0000\nC       8.4000   -0.7000    0.0000\nS       9.6000    0.0000    0.0000\nO      10.8000    0.8000    0.0000\nO      10.8000   -0.8000    0.0000\nO       9.6000    0.0000    1.2000\nNa     -2.8000    0.0000    0.0000\nN       2.4000    1.2000    0.0000\nC       3.6000    1.9000    0.0000\nC       4.8000    2.6000    0.0000\nH       4.8000    3.6000    0.0000\nH       4.8000    2.6000    1.0900\nH       3.6000    1.9000    1.0900\nH       6.0000    1.8000    0.0000\nH       6.0000   -1.8000    0.0000\nH       8.4000    1.8000    0.0000\nH       8.4000   -1.8000    0.0000\n"
+},
   {
   "nom": "hydroxyde de sodium",
   "aliases": ["sodium hydroxide", "naoh", "caustic soda"],
