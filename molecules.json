@@ -61,6 +61,14 @@
   "_comment": "structure initiale simplifiée du chlorure de calcium anhydre ; sel minéral ionique avec cation calcium et deux anions chlorure, géométrie de départ approximative",
   "structure": "3\ncalcium chloride initial structure\nCl      -2.2000    0.0000    0.0000\nCa       0.0000    0.0000    0.0000\nCl       2.2000    0.0000    0.0000\n"
 },
+  {
+  "nom": "dichlorure de magnésium hexahydraté",
+  "aliases": ["chlorure de magnésium hexahydraté", "magnesium chloride hexahydrate", "MgCl2·6H2O"],
+  "formule": "MgCl2·6H2O",
+  "masse": 203.30,
+  "_comment": "structure initiale simplifiée du chlorure de magnésium hexahydraté ; sel ionique hydraté avec cation magnésium coordonné à six molécules d’eau et deux anions chlorure, géométrie de départ approximative",
+  "structure": "21\nmagnesium chloride hexahydrate initial structure\nMg       0.0000    0.0000    0.0000\nCl      -3.2000    0.0000    0.0000\nCl       3.2000    0.0000    0.0000\nO        0.0000    2.1000    0.0000\nH        0.7600    2.5000    0.0000\nH       -0.7600    2.5000    0.0000\nO        0.0000   -2.1000    0.0000\nH        0.7600   -2.5000    0.0000\nH       -0.7600   -2.5000    0.0000\nO        2.1000    0.0000    0.0000\nH        2.5000    0.7600    0.0000\nH        2.5000   -0.7600    0.0000\nO       -2.1000    0.0000    0.0000\nH       -2.5000    0.7600    0.0000\nH       -2.5000   -0.7600    0.0000\nO        0.0000    0.0000    2.1000\nH        0.7600    0.0000    2.5000\nH       -0.7600    0.0000    2.5000\nO        0.0000    0.0000   -2.1000\nH        0.7600    0.0000   -2.5000\nH       -0.7600    0.0000   -2.5000\n"
+},
     {
   "nom": "eau",
   "aliases": ["water", "h2o"],
